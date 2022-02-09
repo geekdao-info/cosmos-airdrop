@@ -18,7 +18,6 @@ const setMark = function (e: any) {
 <template>
     <h1>Hello Vue 3 + TypeScript + Vite</h1>
     <h1>{{ userStore.fullName }}</h1>
-    <h1>{{ accountPinia.myAddress }}</h1>
     <h1>{{ accountPinia.remark }}</h1>
     <input
         type="number"

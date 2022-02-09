@@ -9,11 +9,6 @@ export const accountStore = defineStore({
             airdrop: 5100
         };
     },
-    getters: {
-        myAddress(state) {
-            return 'my ' + state.address;
-        }
-    },
     actions: {
         setMark(airdrop: number) {
             this.remark = '1空投来了，空投数量：' + airdrop;
