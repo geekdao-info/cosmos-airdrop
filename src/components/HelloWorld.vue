@@ -16,6 +16,7 @@ const setMark = function (e: any) {
 </script>
 
 <template>
+    <h1 class="text-3xl font-bold underline"> Hello world! </h1>
     <h1>Hello Vue 3 + TypeScript + Vite</h1>
     <h1>{{ userStore.fullName }}</h1>
     <h1>{{ accountPinia.remark }}</h1>
