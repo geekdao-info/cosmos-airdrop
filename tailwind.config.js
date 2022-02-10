@@ -3,5 +3,13 @@ module.exports = {
     theme: {
         extend: {}
     },
-    plugins: []
+    plugins: [require('daisyui')],
+    daisyui: {
+        styled: true,
+        themes: ['bumblebee', 'light', 'dark', 'emerald'],
+        base: true,
+        utils: true,
+        logs: true,
+        rtl: false
+    }
 };

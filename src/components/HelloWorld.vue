@@ -16,6 +16,28 @@ const setMark = function (e: any) {
 </script>
 
 <template>
+    <div class="grid grid-cols-1 gap-6 lg:p-10 xl:grid-cols-3 lg:bg-base-200 rounded-box">
+        <Card class="col-span-1 row-span-3 shadow-lg xl:col-span-2 bg-base-100">
+            <div class="card-body">
+                <h2 class="my-4 text-4xl font-bold card-title">Top 10 UI Components</h2>
+                <div class="mb-4 space-x-2 card-actions">
+                    <Badge class="badge-ghost">Colors</Badge>
+                    <Badge class="badge-ghost">UI Design</Badge>
+                    <Badge class="badge-ghost">Creativity</Badge>
+                </div>
+                <p
+                    >Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit
+                    necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.</p
+                >
+                <div class="justify-end space-x-2 card-actions">
+                    <Button classes="btn-primary">Login</Button>
+                    <Button classes="">Register</Button>
+                </div>
+            </div>
+        </Card>
+    </div>
+    <button class="btn btn-primary">daisyUI Button</button>
+
     <h1 class="text-3xl font-bold underline"> Hello world! </h1>
     <h1>Hello Vue 3 + TypeScript + Vite</h1>
     <h1>{{ userStore.fullName }}</h1>

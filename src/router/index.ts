@@ -4,7 +4,12 @@ import HelloWorld from '../components/HelloWorld.vue';
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
-        name: 'HelloWorld',
+        name: 'home',
+        component: () => import('@/views/home/home.vue')
+    },
+    {
+        path: '/hello-world',
+        name: 'helloWorld',
         component: HelloWorld
     },
     {
