@@ -19,7 +19,7 @@ export const accountStore = defineStore({
         strategies: [
             {
                 key: 'pinia_address',
-                storage: sessionStorage,
+                storage: localStorage,
                 paths: ['address', 'remark']
             }
         ]

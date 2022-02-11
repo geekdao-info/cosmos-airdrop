@@ -4,13 +4,13 @@ import HelloWorld from '../components/HelloWorld.vue';
 const routes: Array<RouteRecordRaw> = [
     {
         path: '/',
-        name: 'home',
-        component: () => import('@/views/home/home.vue')
-    },
-    {
-        path: '/hello-world',
         name: 'helloWorld',
         component: HelloWorld
+    },
+    {
+        path: '/home',
+        name: 'home',
+        component: () => import('@/views/home/home.vue')
     },
     {
         path: '/:pathMatch(.*)*',
