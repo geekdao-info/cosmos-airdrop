@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import ProjectCardVue from '@/components/ProjectCard.vue';
 import ProjectFooter from '@/components/ProjectFooter.vue';
+import Icon from '@/components/Icon.vue';
 components: {
     ProjectCardVue;
     ProjectFooter;
@@ -14,7 +15,7 @@ const projectList = ref([
         snapDate: '2021-11-11',
         airdropDate: '2022-01-11',
         description:
-            'Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.',
+            'Rerum reiciendis beatae tenetur eariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.',
         link: '',
         amount: 6666,
         loading: true
@@ -26,7 +27,7 @@ const projectList = ref([
         snapDate: '2021-11-11',
         airdropDate: '2022-01-11',
         description:
-            'Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.',
+            'Rerum reiciendissit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.',
         link: '',
         amount: 0,
         loading: true
@@ -38,7 +39,7 @@ const projectList = ref([
         snapDate: '2021-11-11',
         airdropDate: '2022-01-11',
         description:
-            'Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.',
+            'Rerum reiciendis beatae tenetur exceptatis sed molestiae voluptates incidunt iure sapiente.',
         link: '',
         amount: 6666,
         loading: false
@@ -49,8 +50,7 @@ const projectList = ref([
         label: ['Colors', 'UI Design', 'Creativity'],
         snapDate: '2021-11-11',
         airdropDate: '2022-01-11',
-        description:
-            'Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.',
+        description: 'Rerum reiciendis sed molestiae voluptates incidunt iure sapiente.',
         link: '',
         amount: 0,
         loading: false
@@ -61,8 +61,7 @@ const projectList = ref([
         label: ['Colors', 'UI Design', 'Creativity'],
         snapDate: '2021-11-11',
         airdropDate: '2022-01-11',
-        description:
-            'Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.',
+        description: 'Rerum reiciendisidunt iure sapiente.',
         link: '',
         amount: 6666
     },
@@ -73,7 +72,7 @@ const projectList = ref([
         snapDate: '2021-11-11',
         airdropDate: '2022-01-11',
         description:
-            'Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.',
+            'Rerum reiciendist pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.',
         link: '',
         amount: 0
     }
@@ -97,7 +96,15 @@ const projectList = ref([
                     <button class="btn btn-primary">go</button>
                 </div> -->
             </div>
+
             <div class="navbar max-w-none">
+                <div class="avatar placeholder">
+                    <div class="text-neutral-content rounded-full w-8 h-8">
+                        <span><icon icon-class="dark"></icon></span>
+                    </div>
+                </div>
+
+                <div><icon icon-class="wb_sunny"></icon></div>
                 <div class="dropdown dropdown-end" title="Change Theme">
                     <div tabindex="0" class="m-1 normal-case btn-ghost btn">
                         <svg

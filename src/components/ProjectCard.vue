@@ -15,7 +15,11 @@ defineProps<{
 
 <template>
     <card class="card-bordered bg-base-100 border-2 hover:border-yellow-400">
-        <div class="card-body">
+        <div class="card-body relative">
+            <div class="absolute top-0 right-0"
+                ><div class="w-32 h-8 bg-yellow-400 rounded-b-l">Claimable</div></div
+            >
+
             <div class="card-title flex items-center">
                 <div class="avatar">
                     <div class="rounded-full w-10 h-10 ring ring-primary ring-offset-base-100">
