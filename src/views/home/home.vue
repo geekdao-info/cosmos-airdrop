@@ -3,80 +3,12 @@ import { ref } from 'vue';
 import ProjectCardVue from '@/components/ProjectCard.vue';
 import ProjectFooter from '@/components/ProjectFooter.vue';
 import Icon from '@/components/Icon.vue';
+import { useProjectStore } from '@/store/project';
 components: {
     ProjectCardVue;
     ProjectFooter;
 }
-const projectList = ref([
-    {
-        icon: 'http://daisyui.com/tailwind-css-component-profile-1@56w.png',
-        name: 'Top 10 UI Components',
-        label: ['Colors', 'UI Design', 'Creativity'],
-        snapDate: '2021-11-11',
-        airdropDate: '2022-01-11',
-        description:
-            'Rerum reiciendis beatae tenetur eariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.',
-        link: '',
-        amount: 6666,
-        loading: true
-    },
-    {
-        icon: 'http://daisyui.com/tailwind-css-component-profile-1@56w.png',
-        name: 'Top 10 UI Components',
-        label: ['Colors', 'UI Design', 'Creativity'],
-        snapDate: '2021-11-11',
-        airdropDate: '2022-01-11',
-        description:
-            'Rerum reiciendissit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.',
-        link: '',
-        amount: 0,
-        loading: true
-    },
-    {
-        icon: 'http://daisyui.com/tailwind-css-component-profile-1@56w.png',
-        name: 'Top 10 UI Components',
-        label: ['Colors', 'UI Design', 'Creativity'],
-        snapDate: '2021-11-11',
-        airdropDate: '2022-01-11',
-        description:
-            'Rerum reiciendis beatae tenetur exceptatis sed molestiae voluptates incidunt iure sapiente.',
-        link: '',
-        amount: 6666,
-        loading: false
-    },
-    {
-        icon: 'http://daisyui.com/tailwind-css-component-profile-1@56w.png',
-        name: 'Top 10 UI Components',
-        label: ['Colors', 'UI Design', 'Creativity'],
-        snapDate: '2021-11-11',
-        airdropDate: '2022-01-11',
-        description: 'Rerum reiciendis sed molestiae voluptates incidunt iure sapiente.',
-        link: '',
-        amount: 0,
-        loading: false
-    },
-    {
-        icon: 'http://daisyui.com/tailwind-css-component-profile-1@56w.png',
-        name: 'Top 10 UI Components',
-        label: ['Colors', 'UI Design', 'Creativity'],
-        snapDate: '2021-11-11',
-        airdropDate: '2022-01-11',
-        description: 'Rerum reiciendisidunt iure sapiente.',
-        link: '',
-        amount: 6666
-    },
-    {
-        icon: 'http://daisyui.com/tailwind-css-component-profile-1@56w.png',
-        name: 'Top 10 UI Components',
-        label: ['Colors', 'UI Design', 'Creativity'],
-        snapDate: '2021-11-11',
-        airdropDate: '2022-01-11',
-        description:
-            'Rerum reiciendist pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.',
-        link: '',
-        amount: 0
-    }
-]);
+const projectStore = useProjectStore();
 </script>
 <template>
     <div>
@@ -98,12 +30,6 @@ const projectList = ref([
             </div>
 
             <div class="navbar max-w-none">
-                <div class="avatar placeholder">
-                    <div class="text-neutral-content rounded-full w-8 h-8">
-                        <span><icon icon-class="dark"></icon></span>
-                    </div>
-                </div>
-
                 <div><icon icon-class="wb_sunny"></icon></div>
                 <div class="dropdown dropdown-end" title="Change Theme">
                     <div tabindex="0" class="m-1 normal-case btn-ghost btn">
@@ -152,23 +78,26 @@ const projectList = ref([
             </div>
         </div>
 
+        <!-- Project Card Info -->
         <div class="flex justify-center">
             <div class="grid grid-cols-1 p-4 gap-4 max-w-6xl lg:grid-cols-3 lg:p-10 rounded-box">
                 <project-card-vue
-                    v-for="(item, index) in projectList"
+                    v-for="(item, index) in projectStore.projects"
                     :key="index"
-                    :airdrop-date="item.airdropDate"
-                    :snap-date="item.snapDate"
-                    :amount="item.amount"
-                    :icon="item.icon"
-                    :description="item.description"
-                    :label="item.label"
-                    :name="item.name"
-                    :link="item.link"
-                    :loading="item.loading"
+                    :project-key="item.info.key"
+                    :airdrop-date="item.info.airdropDate"
+                    :total-amount="item.airdropTotalAmount"
+                    :snap-date="item.info.snapDate"
+                    :icon="item.info.icon"
+                    :description="item.info.description"
+                    :label="item.info.label"
+                    :name="item.info.name"
+                    :check-account="item.info.checkAccount"
                 ></project-card-vue>
             </div>
         </div>
-        <project-footer></project-footer>
+
+        <!-- Footer -->
+        <!-- <project-footer></project-footer> -->
     </div>
 </template>

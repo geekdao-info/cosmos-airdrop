@@ -1,92 +1,133 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-defineProps<{
+import { ref, watch } from 'vue';
+import AllottedDetail from './AllottedDetail.vue';
+import { useProjectStore } from '@/store/project';
+import { useProfileStore } from '@/store/profile';
+import { AirdropInfo } from '@/types/types';
+
+const props = defineProps<{
+    projectKey: string;
     icon: string;
     name: string;
-    label: string[];
+    label?: string[];
     snapDate: string;
     airdropDate: string;
     description: string;
-    link: string;
-    amount: number;
-    loading?: boolean;
+    totalAmount: number;
+    coin?: string;
+    checkAccount: Function;
 }>();
+
+const loading = ref(false);
+const allottedAllAmount = ref<number>();
+const allottedDetail = ref();
+const projectDetail = ref();
+const projectStore = useProjectStore();
+const profileStore = useProfileStore();
+
+const checkAirdrop = () => {
+    loading.value = true;
+    if (typeof props.checkAccount === 'function') {
+        let totalAmount = 0;
+        const airdrop = [] as AirdropInfo[];
+        profileStore.currentProfile?.address.forEach(async (item, index) => {
+            try {
+                const amount = await props.checkAccount(item);
+                if (Number(amount)) {
+                    totalAmount += Number(amount);
+                    airdrop.push({ address: item, amount: Number(amount) });
+                    console.log('amount', amount);
+                }
+                if (index + 1 === profileStore.currentProfile?.address?.length) {
+                    projectStore.setAirdropTotalAmount(props.projectKey, totalAmount);
+                    // console.log('projectStore.setAirdropTotalAmount', projectStore.projects[])
+                    // profileStore.setProfileAllotted(props.projectKey, airdrop);
+                    loading.value = false;
+                }
+            } catch (e) {
+                console.log('checkAirdrop e', e);
+            }
+        });
+    } else {
+        loading.value = false;
+    }
+};
+
+// watch(
+//     () => projectStore?.currentProject?.airdropTotalAmount,
+//     () => {
+//         allottedAllAmount.value = Number(projectStore?.currentProject?.airdropTotalAmount);
+//     }
+// );
+watch(
+    () => profileStore.currentProfileIndex,
+    () => {
+        checkAirdrop();
+    }
+);
+
+const openAllottedDetail = () => {
+    projectStore.setCurrentProjectKey(props.projectKey);
+    allottedDetail.value.showDrawer();
+};
+const openProjectDetail = () => {
+    projectStore.setCurrentProjectKey(props.projectKey);
+    projectDetail.value.showDrawer();
+};
 </script>
 
 <template>
-    <card class="card-bordered bg-base-100 border-2 hover:border-yellow-400">
+    <card class="card-bordered bg-base-200 border-1 hover:border-yellow-400">
         <div class="card-body relative">
             <div class="absolute top-0 right-0"
-                ><div class="w-32 h-8 bg-yellow-400 rounded-b-l">Claimable</div></div
+                ><div
+                    class="w-24 h-8 bg-primary rounded-l-lg text-primary-content flex justify-center items-center"
+                    >Claimable</div
+                ></div
             >
 
             <div class="card-title flex items-center">
                 <div class="avatar">
-                    <div class="rounded-full w-10 h-10 ring ring-primary ring-offset-base-100">
+                    <div class="rounded-full w-12 h-12">
                         <img :src="icon" />
                     </div>
                 </div>
-                <h4 class="ml-3">{{ name }}</h4>
+                <span class="ml-3">{{ name }}</span>
             </div>
 
             <div class="mb-2 space-x-2 card-actions">
-                <badge v-for="item in label" :key="item" class="badge-ghost"> {{ item }}</badge>
+                <div v-for="item in label" :key="item" class="badge badge-primary badge-outline">
+                    {{ item }}</div
+                >
             </div>
-            <div class="grid grid-cols-2 gap-4">
+            <div class="grid grid-cols-2">
                 <div>
-                    <p class="text-xs">快照时间</p>
-                    <p class="text-yellow-500">{{ snapDate }}</p>
+                    <span class="text-xs">Snapshot: </span>
+                    <span class="text-xs text-primary font-bold">{{ snapDate }}</span>
                 </div>
                 <div>
-                    <p class="text-xs">空投时间</p>
-                    <p class="text-yellow-500">{{ airdropDate }}</p>
+                    <span class="text-xs">Claim: </span>
+                    <span class="text-xs text-primary font-bold">{{ airdropDate }}</span>
                 </div>
             </div>
 
-            <p class="mt-2">{{ description }}</p>
-            <div class="justify-end space-x-1 card-actions">
+            <p class="mt-2 text-neutral">{{ description }}</p>
+            <div class="justify-end space-x-1">
                 <button v-if="loading" class="btn btn-outline btn-primary loading">loading</button>
 
                 <div v-else>
-                    <button v-if="amount" class="btn btn-primary">
-                        <h3 class="text">{{ amount }}</h3
-                        ><span class="ml-1">CLAIM</span>
-
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            class="inline-block w-3 h-3 ml-1 stroke-current"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M9 5l7 7-7 7"
-                            ></path>
-                        </svg>
+                    <button class="btn mr-2" @click="openProjectDetail">
+                        <span class="ml-1">DETAIL</span>
                     </button>
-                    <button v-else class="btn btn-outline">
-                        <span class="ml-1">not eligible > DETAIL</span>
-
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            class="inline-block w-3 h-3 ml-1 stroke-current"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M9 5l7 7-7 7"
-                            ></path>
-                        </svg>
+                    <button v-if="totalAmount" class="btn btn-primary" @click="openAllottedDetail">
+                        <span class="ml-1">{{ totalAmount }} allotted</span>
                     </button>
                 </div>
             </div>
         </div>
     </card>
+    <AllottedDetail ref="allottedDetail" />
+    <ProjectDetail ref="projectDetail" />
 </template>
 
 <style scoped></style>

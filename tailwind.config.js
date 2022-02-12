@@ -6,7 +6,7 @@ module.exports = {
     plugins: [require('daisyui')],
     daisyui: {
         styled: true,
-        themes: ['bumblebee', 'light', 'dark', 'emerald'],
+        themes: ['light', 'bumblebee'],
         base: true,
         utils: true,
         logs: true,
