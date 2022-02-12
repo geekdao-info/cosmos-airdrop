@@ -58,12 +58,12 @@ export const useProjectStore = defineStore({
             } else {
                 this.projects[projectIndex]?.profileAllotted?.push({
                     profileKey: currentProfileKey ?? 0,
-                    projectKey: this.currentProjectKey,
-                    checkTime: new Date().getTime()
+                    projectKey: projectKey,
+                    checkTime: new Date().getTime(),
+                    airdrop: airdropInfo
                 });
             }
         },
-        setCurrentProfileProjectAirdropInfo(airdropInfo: AirdropInfo) {},
         getProfileAllotted() {},
         getCurrentProfileProjectAirdropInfo() {
             const profileStore = useProfileStore();

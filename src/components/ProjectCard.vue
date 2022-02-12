@@ -40,12 +40,13 @@ const checkAirdrop = () => {
                 }
                 if (index + 1 === profileStore.currentProfile?.address?.length) {
                     projectStore.setAirdropTotalAmount(props.projectKey, totalAmount);
-                    // console.log('projectStore.setAirdropTotalAmount', projectStore.projects[])
-                    // profileStore.setProfileAllotted(props.projectKey, airdrop);
+                    console.log('projectStore.setAirdropTotalAmount airdrop', airdrop);
+                    projectStore.setProfileAllotted(props.projectKey, airdrop);
                     loading.value = false;
                 }
             } catch (e) {
                 console.log('checkAirdrop e', e);
+                loading.value = false;
             }
         });
     } else {

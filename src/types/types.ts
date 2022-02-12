@@ -36,6 +36,6 @@ export interface ProfileAllotted {
 
 export interface Project {
     info: ProjectBaseInfo;
-    profileAllotted?: ProfileAllotted[];
+    profileAllotted: ProfileAllotted[];
     airdropTotalAmount: number | string;
 }
