@@ -1,80 +1,89 @@
 import { acceptHMRUpdate, defineStore } from 'pinia';
-import { AirdropInfo, Project } from '@/types/types';
-import { projectList } from '@/utils/projectData';
+import { AirdropInfo, ProfileAllotted, ProjectBaseInfo } from '@/types/types';
+import { projectList } from '@/utils/profileCheckProjectData';
 import { useProfileStore } from './profile';
+import { accAdd } from '@/utils/acc';
 
 export const useProjectStore = defineStore({
     id: 'project',
     state: () => {
-        const projects: Project[] = projectList.map((item) => {
-            return {
-                info: item,
-                profileAllotted: [],
-                airdropTotalAmount: 0
-            };
-        });
+        const projects: ProjectBaseInfo[] = projectList;
+        const profileAllotted = [] as ProfileAllotted[];
         return {
             projects,
+            profileAllotted,
             currentProjectKey: ''
         };
     },
     getters: {
         currentProject: (state) => {
-            const index = state.projects.findIndex((e) => e.info.key === state.currentProjectKey);
+            const index = state.projects.findIndex((e) => e.key === state.currentProjectKey);
             console.log('project store index', index);
             return state.projects[index];
+        },
+        currentProfileProjectAllotted: (state) => {
+            const profileStore = useProfileStore();
+            const currentProfileKey = profileStore?.currentProfile?.key ?? 0;
+            return state.profileAllotted.find(
+                (e) =>
+                    e.projectKey === state.currentProjectKey && e.profileKey === currentProfileKey
+            );
         }
     },
     actions: {
         setCurrentProjectKey(key: string) {
             this.currentProjectKey = key;
         },
-        setAirdropTotalAmount(projectKey: string, amount: number) {
-            const index = this.projects.findIndex((e) => e.info.key === projectKey);
-            this.projects[index].airdropTotalAmount = amount ?? 0;
-        },
-        ifProfileAllotted(projectIndex: number, profileKey: number, projectKey: string) {
-            const findIndex = this.projects[projectIndex]?.profileAllotted?.findIndex(
-                (e) => e.profileKey === profileKey && e.projectKey === this.currentProjectKey
-            );
-            return Number(findIndex);
-        },
-        setProfileAllotted(projectKey: string, airdropInfo: AirdropInfo[]) {
+        getProfileProjectAllottedIndex(projectKey: string) {
             const profileStore = useProfileStore();
             const currentProfileKey = profileStore?.currentProfile?.key ?? 0;
-            const projectIndex = this.projects.findIndex((e) => e.info.key === projectKey);
-            // 如果存在 [当前项目-当前Profile] 的查询结果，则不需要新增了
-            const profileAllottedIndex = this.ifProfileAllotted(
-                projectIndex,
-                currentProfileKey,
-                projectKey
+            const index = this.profileAllotted.findIndex(
+                (e) => e.projectKey === projectKey && e.profileKey === currentProfileKey
             );
+            return index;
+        },
+        setAirdropTotalAmount(projectKey: string, amount: number) {
+            const index = this.getProfileProjectAllottedIndex(projectKey);
+            if (index >= 0) {
+                this.profileAllotted[index].airdropTotalAmount = amount ?? 0;
+            }
+        },
+
+        setProfileAllotted(projectKey: string, airdropInfo: AirdropInfo[]) {
+            // 如果存在 [当前项目-当前Profile] 的查询结果，则不需要新增了
+            console.log('setProfileAllotted store projects airdropInfo', airdropInfo);
+            const profileStore = useProfileStore();
+            const currentProfileKey = profileStore?.currentProfile?.key ?? 0;
+            const profileAllottedIndex = this.getProfileProjectAllottedIndex(projectKey);
             if (profileAllottedIndex >= 0) {
-                let airdrop =
-                    this.projects[projectIndex].profileAllotted[profileAllottedIndex].airdrop ?? [];
-                if (airdrop.length <= 0) {
-                    airdrop = airdropInfo;
-                }
+                this.profileAllotted[profileAllottedIndex].airdrop = airdropInfo;
+                this.profileAllotted[profileAllottedIndex].checkTime = new Date().getTime();
+                const total = airdropInfo.reduce(function (accumulator, currentValue) {
+                    return accAdd(accumulator, Number(currentValue.amount));
+                }, 0);
+                this.profileAllotted[profileAllottedIndex].airdropTotalAmount = total;
+                console.log('if total', total);
             } else {
-                this.projects[projectIndex]?.profileAllotted?.push({
+                const total = airdropInfo.reduce(function (accumulator, currentValue) {
+                    return accAdd(accumulator.toExponential, Number(currentValue.amount));
+                }, 0);
+                console.log('else total', total);
+                this.profileAllotted.push({
                     profileKey: currentProfileKey ?? 0,
                     projectKey: projectKey,
                     checkTime: new Date().getTime(),
-                    airdrop: airdropInfo
+                    airdrop: airdropInfo,
+                    airdropTotalAmount: total
                 });
             }
         },
-        getProfileAllotted() {},
         getCurrentProfileProjectAirdropInfo() {
             const profileStore = useProfileStore();
             const currentProfileKey = profileStore?.currentProfile?.key;
-            return (
-                this.currentProject?.profileAllotted?.find(
-                    (e) =>
-                        e.profileKey === currentProfileKey &&
-                        e.projectKey === this.currentProjectKey
-                )?.airdrop ?? []
+            const profileAllottedIndex = this.getProfileProjectAllottedIndex(
+                this.currentProjectKey
             );
+            return this.profileAllotted[profileAllottedIndex].airdrop ?? [];
         }
     }
     // persist: {

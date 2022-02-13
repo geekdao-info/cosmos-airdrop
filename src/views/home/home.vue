@@ -4,11 +4,32 @@ import ProjectCardVue from '@/components/ProjectCard.vue';
 import ProjectFooter from '@/components/ProjectFooter.vue';
 import Icon from '@/components/Icon.vue';
 import { useProjectStore } from '@/store/project';
+import { useProfileStore } from '@/store/profile';
+import { InfoCircleFilled } from '@ant-design/icons-vue';
+import { noCheckProjectList } from '@/utils/noCheckProjectData';
+import ManageProfile from '@/components/ManageProfile.vue';
+import { themeChange } from 'theme-change';
+
 components: {
     ProjectCardVue;
     ProjectFooter;
+    InfoCircleFilled;
 }
+themeChange(false);
+const manageProfile = ref();
+const profileStore = useProfileStore();
+const currentProfileKey = ref(0);
+const currentProfileName = ref('');
 const projectStore = useProjectStore();
+const noCheckProjects = ref(noCheckProjectList);
+const changeProfile = (key: number, name: string) => {
+    // currentProfileKey.value = key;
+    // currentProfileName.value = name;
+    profileStore.setCurrentProfileKey(key);
+};
+const openManageProfile = () => {
+    manageProfile.value.showDrawer();
+};
 </script>
 <template>
     <div>
@@ -16,7 +37,12 @@ const projectStore = useProjectStore();
             id="nav"
             class="flex justify-end items-center border-base-200 bg-base-100 text-base-content sticky inset-x-0 top-0 z-50 w-full transition duration-200 ease-in-out border-b"
         >
-            <div class="flex-none ml-6"><img width="200" src="../../assets/logo.png" /></div>
+            <div class="flex-none ml-6">
+                <!-- <img width="200" src="../../assets/logo.png" />  -->
+                <span class="text-primary font-bold text-3xl">Cosmos</span
+                ><span class="font-extrabold text-3xl">Drops</span>
+                <div class="ml-2 badge badge-primary badge-outline">Beta</div>
+            </div>
 
             <div class="flex-1">
                 <!-- <div class="flex space-x-2 mx-8 hidden lg:mx-40 lg:flex">
@@ -29,23 +55,33 @@ const projectStore = useProjectStore();
                 </div> -->
             </div>
 
-            <div class="navbar max-w-none">
-                <div><icon icon-class="wb_sunny"></icon></div>
-                <div class="dropdown dropdown-end" title="Change Theme">
+            <div class="navbar max-w-none mr-5">
+                <!-- <div class="mr-8" data-set-theme="dark"><icon icon-class="wb_sunny"></icon></div> -->
+                <a-dropdown :trigger="['click']">
+                    <div class="btn btn-primary no-animation rounded-full" @click.prevent
+                        >{{ profileStore.currentProfileName || 'Manage' }} | Profile</div
+                    >
+                    <template #overlay>
+                        <a-menu>
+                            <a-menu-item
+                                v-for="item in profileStore.profiles"
+                                :key="item.key"
+                                @click="changeProfile(item.key, item.name)"
+                            >
+                                <span>{{ item.name }}</span>
+                            </a-menu-item>
+
+                            <a-menu-divider />
+                            <a-menu-item key="3" @click="openManageProfile"
+                                ><div class="text-center text-primary"
+                                    >Manage Profile</div
+                                ></a-menu-item
+                            >
+                        </a-menu>
+                    </template>
+                </a-dropdown>
+                <!-- <div class="dropdown dropdown-end" title="Change Theme">
                     <div tabindex="0" class="m-1 normal-case btn-ghost btn">
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            class="inline-block w-6 h-6 stroke-current md:mr-2"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"
-                            />
-                        </svg>
                         <span class="hidden md:inline"> Manage Profile </span>
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -74,30 +110,71 @@ const projectStore = useProjectStore();
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
+        <!-- Manage Your Profile to Check multi-account AirDrop Info -->
+        <div class="text-center">
+            <h1 class="pt-12 font-bold text-2xl">Profile Check Airdrop</h1>
+            <p>Manage your profile to Check multi-account Airdrop info</p>
+        </div>
 
-        <!-- Project Card Info -->
-        <div class="flex justify-center">
-            <div class="grid grid-cols-1 p-4 gap-4 max-w-6xl lg:grid-cols-3 lg:p-10 rounded-box">
+        <div class="grid ustify-items-center lg:px-20">
+            <!-- Project Card Info -->
+            <div
+                class="grid grid-cols-1 p-4 gap-4 w-6xl md:grid-cols-2 md:p-8 lg:grid-cols-3 lg:p-10 rounded-box"
+            >
                 <project-card-vue
                     v-for="(item, index) in projectStore.projects"
                     :key="index"
-                    :project-key="item.info.key"
-                    :airdrop-date="item.info.airdropDate"
-                    :total-amount="item.airdropTotalAmount"
-                    :snap-date="item.info.snapDate"
-                    :icon="item.info.icon"
-                    :description="item.info.description"
-                    :label="item.info.label"
-                    :name="item.info.name"
-                    :check-account="item.info.checkAccount"
+                    :claim-status="item.claimStatus"
+                    :claim-status-class="item.claimStatusClass"
+                    :project-key="item.key"
+                    :is-check-account="item.isCheckAccount"
+                    :airdrop-date="item.airdropDate"
+                    :snap-date="item.snapDate"
+                    :icon="item.icon"
+                    :description="item.description"
+                    :detail="item.detail"
+                    :airdrop-link="item.airdropLink"
+                    :official-web="item.officialWeb"
+                    :label="item.label"
+                    :name="item.name"
+                    :coin="item.coin"
+                    :check-account="item.checkAccount"
+                ></project-card-vue>
+            </div>
+        </div>
+        <h1 class="pt-12 text-center font-bold text-2xl">Airdrop Detail</h1>
+        <div class="grid ustify-items-center lg:px-20">
+            <!-- Project Card Info -->
+            <div
+                class="grid grid-cols-1 p-4 gap-4 w-6xl md:grid-cols-2 md:p-8 lg:grid-cols-3 lg:p-10 rounded-box"
+            >
+                <project-card-vue
+                    v-for="(item, index) in noCheckProjects"
+                    :key="index"
+                    :claim-status="item.claimStatus"
+                    :claim-status-class="item.claimStatusClass"
+                    :project-key="item.key"
+                    :is-check-account="item.isCheckAccount"
+                    :airdrop-date="item.airdropDate"
+                    :snap-date="item.snapDate"
+                    :icon="item.icon"
+                    :description="item.description"
+                    :detail="item.detail"
+                    :airdrop-link="item.airdropLink"
+                    :official-web="item.officialWeb"
+                    :label="item.label"
+                    :name="item.name"
+                    :coin="item.coin"
+                    :check-account="item.checkAccount"
                 ></project-card-vue>
             </div>
         </div>
 
         <!-- Footer -->
-        <!-- <project-footer></project-footer> -->
+        <project-footer></project-footer>
+        <manage-profile ref="manageProfile"></manage-profile>
     </div>
 </template>

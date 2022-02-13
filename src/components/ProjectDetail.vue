@@ -2,9 +2,14 @@
 import { ref } from 'vue';
 import { useProjectStore } from '@/store/project';
 
+const props = defineProps<{
+    detail?: string;
+    officialWeb?: string;
+    airdropLink?: string;
+}>();
+
 const projectStore = useProjectStore();
 const visible = ref<boolean>(false);
-const account = ref([] as any);
 
 const afterVisibleChange = (bool: boolean) => {
     console.log('visible', bool);
@@ -14,13 +19,13 @@ const showDrawer = () => {
 };
 
 const openOfficialWeb = () => {
-    if (projectStore.currentProject?.info?.officialWeb) {
-        window.open(projectStore.currentProject.info.officialWeb, '_blank');
+    if (props.officialWeb) {
+        window.open(props.officialWeb, '_blank');
     }
 };
 const openAirdropDetailWeb = () => {
-    if (projectStore.currentProject?.info?.airdropLink) {
-        window.open(projectStore.currentProject.info.airdropLink, '_blank');
+    if (props.airdropLink) {
+        window.open(props.airdropLink, '_blank');
     }
 };
 
@@ -31,7 +36,7 @@ defineExpose({
 <template>
     <a-drawer
         v-model:visible="visible"
-        width="400"
+        width="40vw"
         title="Detail"
         placement="right"
         :footer-style="{ textAlign: 'right' }"
@@ -47,7 +52,7 @@ defineExpose({
             >
         </template>
         <div>
-            {{ projectStore?.currentProject?.info?.detail }}
+            {{ props.detail }}
         </div>
     </a-drawer>
 </template>

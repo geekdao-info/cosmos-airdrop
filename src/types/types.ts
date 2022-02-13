@@ -2,14 +2,16 @@ export interface Profile {
     key: number;
     name: string;
     address: string[];
-    createDate?: string;
-    updateDate?: string;
+    create?: number;
+    update?: number;
 }
 
 export interface ProjectBaseInfo {
     key: string;
     icon: string;
     name: string;
+    claimStatus: string;
+    claimStatusClass: string;
     label: string[];
     snapDate: string;
     airdropDate: string;
@@ -18,6 +20,7 @@ export interface ProjectBaseInfo {
     airdropLink?: string;
     officialWeb: string;
     coin: string;
+    isCheckAccount: boolean;
     checkAccount: Function;
 }
 
@@ -30,12 +33,7 @@ export interface AirdropInfo {
 export interface ProfileAllotted {
     profileKey: number;
     projectKey: string;
+    airdropTotalAmount: number;
     checkTime?: number;
     airdrop?: AirdropInfo[];
-}
-
-export interface Project {
-    info: ProjectBaseInfo;
-    profileAllotted: ProfileAllotted[];
-    airdropTotalAmount: number | string;
 }

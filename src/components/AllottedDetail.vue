@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { useProjectStore } from '@/store/project';
+import { encodeAddress } from '@/utils';
+import { accAdd } from '@/utils/acc';
+import { getFormatAmount } from '@/utils';
 
 const projectStore = useProjectStore();
 const visible = ref<boolean>(false);
 const account = ref([] as any);
+const totalAmount = ref('');
 const afterVisibleChange = (bool: boolean) => {
     console.log('visible', bool);
 };
@@ -13,17 +17,29 @@ const showDrawer = () => {
 };
 
 const openOfficialWeb = () => {
-    if (projectStore.currentProject?.info?.officialWeb) {
-        window.open(projectStore.currentProject.info.officialWeb, '_blank');
+    if (projectStore.currentProject?.officialWeb) {
+        window.open(projectStore.currentProject.officialWeb, '_blank');
     }
 };
 const openAirdropDetailWeb = () => {
-    if (projectStore.currentProject?.info?.airdropLink) {
-        window.open(projectStore.currentProject.info.airdropLink, '_blank');
+    if (projectStore.currentProject?.airdropLink) {
+        window.open(projectStore.currentProject.airdropLink, '_blank');
     }
 };
+watch(
+    () => visible.value,
+    () => {
+        if (visible.value) {
+            account.value = projectStore.getCurrentProfileProjectAirdropInfo();
+            const total = account.value.reduce(function (accumulator: number, currentValue: any) {
+                return accAdd(accumulator, Number(currentValue.amount));
+            }, 0);
+            totalAmount.value = `${getFormatAmount(total)} ${account.value[0]?.coin}`;
+            console.log('account.value', account.value);
+        }
+    }
+);
 
-account.value = projectStore.getCurrentProfileProjectAirdropInfo();
 defineExpose({
     showDrawer
 });
@@ -31,8 +47,8 @@ defineExpose({
 <template>
     <a-drawer
         v-model:visible="visible"
-        width="400"
-        title="Allotted to You"
+        width="40vw"
+        :title="`Allotted to You ${totalAmount}`"
         placement="right"
         :footer-style="{ textAlign: 'right' }"
         :closable="true"
@@ -51,11 +67,17 @@ defineExpose({
                 <tr v-for="(item, index) in account" :key="index">
                     <th>{{ index + 1 }}</th>
                     <td
-                        ><a-typography-paragraph :copyable="{ text: 'Hello, Ant Design!' }">
-                            Replace copy text.
+                        ><a-typography-paragraph
+                            style="margin-bottom: 0.1rem"
+                            :copyable="{ text: item.address }"
+                        >
+                            <a-tooltip>
+                                <template #title>{{ item.address }}</template>
+                                {{ encodeAddress(item.address) }}
+                            </a-tooltip>
                         </a-typography-paragraph></td
                     >
-                    <td>{{ item.amount }}</td>
+                    <td>{{ item.amount }} {{ item.coin }}</td>
                 </tr>
             </tbody>
         </table>

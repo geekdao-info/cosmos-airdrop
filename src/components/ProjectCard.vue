@@ -1,25 +1,32 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { ref, watch, computed } from 'vue';
 import AllottedDetail from './AllottedDetail.vue';
 import { useProjectStore } from '@/store/project';
 import { useProfileStore } from '@/store/profile';
 import { AirdropInfo } from '@/types/types';
+import { accAdd } from '@/utils/acc';
+import { getFormatAmount } from '@/utils';
 
 const props = defineProps<{
     projectKey: string;
+    claimStatus?: string;
+    claimStatusClass?: string;
     icon: string;
     name: string;
     label?: string[];
     snapDate: string;
     airdropDate: string;
     description: string;
-    totalAmount: number;
+    airdropLink?: string;
+    officialWeb?: string;
+    detail?: string;
     coin?: string;
+    isCheckAccount: boolean;
     checkAccount: Function;
 }>();
 
 const loading = ref(false);
-const allottedAllAmount = ref<number>();
+const allottedAllAmount = ref<Number>(0);
 const allottedDetail = ref();
 const projectDetail = ref();
 const projectStore = useProjectStore();
@@ -27,19 +34,15 @@ const profileStore = useProfileStore();
 
 const checkAirdrop = () => {
     loading.value = true;
-    if (typeof props.checkAccount === 'function') {
-        let totalAmount = 0;
+    if (props.isCheckAccount && typeof props.checkAccount === 'function') {
         const airdrop = [] as AirdropInfo[];
         profileStore.currentProfile?.address.forEach(async (item, index) => {
             try {
                 const amount = await props.checkAccount(item);
                 if (Number(amount)) {
-                    totalAmount += Number(amount);
-                    airdrop.push({ address: item, amount: Number(amount) });
-                    console.log('amount', amount);
+                    airdrop.push({ address: item, amount: Number(amount), coin: props.coin });
                 }
                 if (index + 1 === profileStore.currentProfile?.address?.length) {
-                    projectStore.setAirdropTotalAmount(props.projectKey, totalAmount);
                     console.log('projectStore.setAirdropTotalAmount airdrop', airdrop);
                     projectStore.setProfileAllotted(props.projectKey, airdrop);
                     loading.value = false;
@@ -49,21 +52,46 @@ const checkAirdrop = () => {
                 loading.value = false;
             }
         });
+        if (profileStore.currentProfile?.address?.length ?? 0 <= 0) {
+            setTimeout(() => {
+                loading.value = false;
+            }, 1000);
+        }
     } else {
         loading.value = false;
     }
 };
 
-// watch(
-//     () => projectStore?.currentProject?.airdropTotalAmount,
-//     () => {
-//         allottedAllAmount.value = Number(projectStore?.currentProject?.airdropTotalAmount);
-//     }
-// );
+// watch(()=>projectStore.getProject(props.projectKey)?.airdropTotalAmount,()=>{
+//   allottedAllAmount.value = Number(projectStore.getProject(props.projectKey)?.airdropTotalAmount);
+// })
 watch(
     () => profileStore.currentProfileIndex,
     () => {
         checkAirdrop();
+    },
+    {
+        immediate: true,
+        deep: true
+    }
+);
+watch(
+    () => [
+        profileStore.currentProfileIndex,
+        projectStore.profileAllotted[projectStore.getProfileProjectAllottedIndex(props.projectKey)]
+            ?.airdrop
+    ],
+    () => {
+        allottedAllAmount.value =
+            projectStore.profileAllotted[
+                projectStore.getProfileProjectAllottedIndex(props.projectKey)
+            ]?.airdrop?.reduce(function (accumulator: number, currentValue: any) {
+                return accAdd(accumulator, Number(currentValue.amount));
+            }, 0) ?? 0;
+    },
+    {
+        immediate: true,
+        deep: true
     }
 );
 
@@ -78,12 +106,13 @@ const openProjectDetail = () => {
 </script>
 
 <template>
-    <card class="card-bordered bg-base-200 border-1 hover:border-yellow-400">
+    <card class="card-bordered w-full bg-base-200 border-1 hover:border-primary">
         <div class="card-body relative">
-            <div class="absolute top-0 right-0"
+            <div v-if="claimStatus" class="absolute top-0 right-0"
                 ><div
                     class="w-24 h-8 bg-primary rounded-l-lg text-primary-content flex justify-center items-center"
-                    >Claimable</div
+                    :class="claimStatusClass"
+                    >{{ claimStatus }}</div
                 ></div
             >
 
@@ -120,15 +149,29 @@ const openProjectDetail = () => {
                     <button class="btn mr-2" @click="openProjectDetail">
                         <span class="ml-1">DETAIL</span>
                     </button>
-                    <button v-if="totalAmount" class="btn btn-primary" @click="openAllottedDetail">
-                        <span class="ml-1">{{ totalAmount }} allotted</span>
+
+                    <button
+                        v-if="allottedAllAmount"
+                        class="btn btn-primary"
+                        @click="openAllottedDetail"
+                    >
+                        <span class="ml-1"
+                            >maybe<span class="badge ml-2 badge-outline">{{
+                                getFormatAmount(allottedAllAmount)
+                            }}</span>
+                        </span>
                     </button>
                 </div>
             </div>
         </div>
     </card>
     <AllottedDetail ref="allottedDetail" />
-    <ProjectDetail ref="projectDetail" />
+    <ProjectDetail
+        :detail="props.detail"
+        :officialWeb="props.officialWeb"
+        :airdropLink="props.airdropLink"
+        ref="projectDetail"
+    />
 </template>
 
 <style scoped></style>
