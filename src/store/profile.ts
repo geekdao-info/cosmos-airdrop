@@ -3,16 +3,7 @@ import { Profile } from '@/types/types';
 export const useProfileStore = defineStore({
     id: 'profile',
     state: () => {
-        const profiles = [
-            {
-                key: 123456,
-                name: 'geekdao',
-                address: [
-                    'osmo1gc4vc76uzta0uar2kw2kxygcqpp86nuex6l9py',
-                    'cosmos1gc4vc76uzta0uar2kw2kxygcqpp86nuewpv4hk'
-                ]
-            }
-        ] as Profile[];
+        const profiles = [] as Profile[];
         return {
             profiles,
             currentProfileKey: 0
