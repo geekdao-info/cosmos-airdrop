@@ -8,14 +8,13 @@ import { useProfileStore } from '@/store/profile';
 import { InfoCircleFilled } from '@ant-design/icons-vue';
 import { noCheckProjectList } from '@/utils/noCheckProjectData';
 import ManageProfile from '@/components/ManageProfile.vue';
-import { themeChange } from 'theme-change';
 
 components: {
     ProjectCardVue;
     ProjectFooter;
     InfoCircleFilled;
 }
-themeChange(false);
+
 const manageProfile = ref();
 const profileStore = useProfileStore();
 const currentProfileKey = ref(0);

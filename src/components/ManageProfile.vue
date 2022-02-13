@@ -77,7 +77,7 @@ const dynamicValidateForm = reactive<{ key: number; name: string; addresses: Add
 });
 const submitForm = () => {
     formRef.value
-        .validate()
+        ?.validate()
         .then(() => {
             const address = dynamicValidateForm.addresses.map((item) => {
                 return item.value.trim();

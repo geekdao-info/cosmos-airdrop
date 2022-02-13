@@ -17,7 +17,6 @@ declare module 'vue' {
     APopconfirm: typeof import('ant-design-vue/es')['Popconfirm']
     ATooltip: typeof import('ant-design-vue/es')['Tooltip']
     ATypographyParagraph: typeof import('ant-design-vue/es')['TypographyParagraph']
-    HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     Icon: typeof import('./src/components/Icon.vue')['default']
     ManageProfile: typeof import('./src/components/ManageProfile.vue')['default']
     ProjectCard: typeof import('./src/components/ProjectCard.vue')['default']

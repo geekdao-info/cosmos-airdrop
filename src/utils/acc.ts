@@ -4,7 +4,7 @@
  ** 调用：accDiv(arg1,arg2)
  ** 返回值：arg1除以arg2的精确结果
  **/
-export function accDiv(arg1, arg2) {
+export function accDiv(arg1: number, arg2: number) {
     let t1 = 0;
     let t2 = 0;
     let r1;
@@ -24,7 +24,7 @@ export function accDiv(arg1, arg2) {
 //说明：javascript的乘法结果会有误差，在两个浮点数相乘的时候会比较明显。这个函数返回较为精确的乘法结果。
 //调用：accMul(arg1,arg2)
 //返回值：arg1乘以arg2的精确结果
-export function accMul(arg1, arg2) {
+export function accMul(arg1: number, arg2: number) {
     var m = 0,
         s1 = arg1.toString(),
         s2 = arg2.toString();
@@ -41,7 +41,7 @@ export function accMul(arg1, arg2) {
 //说明：javascript的加法结果会有误差，在两个浮点数相加的时候会比较明显。这个函数返回较为精确的加法结果。
 //调用：accAdd(arg1,arg2)
 //返回值：arg1加上arg2的精确结果
-export function accAdd(arg1, arg2) {
+export function accAdd(arg1: number, arg2: number) {
     var r1, r2, m;
     try {
         r1 = arg1.toString().split('.')[1].length;
@@ -61,7 +61,7 @@ export function accAdd(arg1, arg2) {
 //说明：javascript的减法结果会有误差，在两个浮点数相加的时候会比较明显。这个函数返回较为精确的减法结果。
 //调用：accSubtr(arg1,arg2)
 //返回值：arg1减去arg2的精确结果
-export function accSubtr(arg1, arg2) {
+export function accSubtr(arg1: number, arg2: number) {
     var r1, r2, m, n;
     try {
         r1 = arg1.toString().split('.')[1].length;

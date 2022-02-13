@@ -65,7 +65,7 @@ export const useProjectStore = defineStore({
                 console.log('if total', total);
             } else {
                 const total = airdropInfo.reduce(function (accumulator, currentValue) {
-                    return accAdd(accumulator.toExponential, Number(currentValue.amount));
+                    return accAdd(accumulator, Number(currentValue.amount));
                 }, 0);
                 console.log('else total', total);
                 this.profileAllotted.push({

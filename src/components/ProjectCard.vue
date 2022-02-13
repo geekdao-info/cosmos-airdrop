@@ -157,7 +157,7 @@ const openProjectDetail = () => {
                     >
                         <span class="ml-1"
                             >maybe<span class="badge ml-2 badge-outline">{{
-                                getFormatAmount(allottedAllAmount)
+                                getFormatAmount(Number(allottedAllAmount))
                             }}</span>
                         </span>
                     </button>
