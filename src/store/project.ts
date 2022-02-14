@@ -3,6 +3,7 @@ import { AirdropInfo, ProfileAllotted, ProjectBaseInfo } from '@/types/types';
 import { projectList } from '@/utils/profileCheckProjectData';
 import { useProfileStore } from './profile';
 import { accAdd } from '@/utils/acc';
+import { Console } from 'console';
 
 export const useProjectStore = defineStore({
     id: 'project',
@@ -16,12 +17,12 @@ export const useProjectStore = defineStore({
         };
     },
     getters: {
-        currentProject: (state) => {
+        currentProject(state) {
             const index = state.projects.findIndex((e) => e.key === state.currentProjectKey);
             console.log('project store index', index);
             return state.projects[index];
         },
-        currentProfileProjectAllotted: (state) => {
+        currentProfileProjectAllotted(state) {
             const profileStore = useProfileStore();
             const currentProfileKey = profileStore?.currentProfile?.key ?? 0;
             return state.profileAllotted.find(
@@ -55,18 +56,17 @@ export const useProjectStore = defineStore({
             const profileStore = useProfileStore();
             const currentProfileKey = profileStore?.currentProfile?.key ?? 0;
             const profileAllottedIndex = this.getProfileProjectAllottedIndex(projectKey);
+            console.log('airdropInfo length', airdropInfo.length);
+            debugger;
+            const total = airdropInfo.reduce(function (accumulator, currentValue) {
+                return accAdd(accumulator, Number(currentValue.amount));
+            }, 0);
             if (profileAllottedIndex >= 0) {
                 this.profileAllotted[profileAllottedIndex].airdrop = airdropInfo;
                 this.profileAllotted[profileAllottedIndex].checkTime = new Date().getTime();
-                const total = airdropInfo.reduce(function (accumulator, currentValue) {
-                    return accAdd(accumulator, Number(currentValue.amount));
-                }, 0);
                 this.profileAllotted[profileAllottedIndex].airdropTotalAmount = total;
                 console.log('if total', total);
             } else {
-                const total = airdropInfo.reduce(function (accumulator, currentValue) {
-                    return accAdd(accumulator, Number(currentValue.amount));
-                }, 0);
                 console.log('else total', total);
                 this.profileAllotted.push({
                     profileKey: currentProfileKey ?? 0,

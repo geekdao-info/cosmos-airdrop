@@ -155,6 +155,7 @@ const deleteProfile = (key: number) => {
         v-model:visible="visible"
         title="Manage Profile"
         width="50vw"
+        :destroyOnClose="true"
         :closable="true"
         :footer-style="{ textAlign: 'right' }"
         @close="onClose"
@@ -262,3 +263,4 @@ const deleteProfile = (key: number) => {
         </template>
     </a-drawer>
 </template>
+<style lang="less" scoped></style>

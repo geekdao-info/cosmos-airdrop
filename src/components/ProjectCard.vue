@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue';
+import { ref, watch } from 'vue';
 import AllottedDetail from './AllottedDetail.vue';
 import { useProjectStore } from '@/store/project';
 import { useProfileStore } from '@/store/profile';
@@ -32,18 +32,20 @@ const projectDetail = ref();
 const projectStore = useProjectStore();
 const profileStore = useProfileStore();
 
-const checkAirdrop = () => {
+const checkAirdrop = async () => {
     loading.value = true;
     if (props.isCheckAccount && typeof props.checkAccount === 'function') {
         const airdrop = [] as AirdropInfo[];
-        profileStore.currentProfile?.address.forEach(async (item, index) => {
+        const addressCount = profileStore.currentProfile?.address?.length ?? 0;
+
+        for (let index = 0; index < addressCount; index++) {
             try {
+                const item = profileStore.currentProfile?.address[index] ?? '';
                 const amount = await props.checkAccount(item);
                 if (Number(amount)) {
                     airdrop.push({ address: item, amount: Number(amount), coin: props.coin });
                 }
-                if (index + 1 === profileStore.currentProfile?.address?.length) {
-                    console.log('projectStore.setAirdropTotalAmount airdrop', airdrop);
+                if (index + 1 === addressCount) {
                     projectStore.setProfileAllotted(props.projectKey, airdrop);
                     loading.value = false;
                 }
@@ -51,11 +53,11 @@ const checkAirdrop = () => {
                 console.log('checkAirdrop e', e);
                 loading.value = false;
             }
-        });
+        }
         if (profileStore.currentProfile?.address?.length ?? 0 <= 0) {
             setTimeout(() => {
                 loading.value = false;
-            }, 1000);
+            }, 500);
         }
     } else {
         loading.value = false;
@@ -156,9 +158,7 @@ const openProjectDetail = () => {
                         @click="openAllottedDetail"
                     >
                         <span class="ml-1"
-                            >maybe<span class="badge ml-2 badge-outline">{{
-                                getFormatAmount(Number(allottedAllAmount))
-                            }}</span>
+                            >{{ getFormatAmount(Number(allottedAllAmount)) }} Allotted
                         </span>
                     </button>
                 </div>
