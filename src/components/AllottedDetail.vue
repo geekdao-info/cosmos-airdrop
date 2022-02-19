@@ -4,6 +4,11 @@ import { useProjectStore } from '@/store/project';
 import { encodeAddress } from '@/utils';
 import { accAdd } from '@/utils/acc';
 import { getFormatAmount } from '@/utils';
+import { RightCircleOutlined } from '@ant-design/icons-vue';
+
+components: {
+    RightCircleOutlined;
+}
 
 const projectStore = useProjectStore();
 const visible = ref<boolean>(false);
@@ -73,10 +78,14 @@ defineExpose({
                         >
                             <a-tooltip>
                                 <template #title>{{ item.address }}</template>
-                                {{ encodeAddress(item.address) }}
+                                <span
+                                    @click="openOfficialWeb"
+                                    class="link link-hover link-primary"
+                                    >{{ encodeAddress(item.address) }}</span
+                                >
                             </a-tooltip>
-                        </a-typography-paragraph></td
-                    >
+                        </a-typography-paragraph>
+                    </td>
                     <td>{{ item.amount }} {{ item.coin }}</td>
                 </tr>
             </tbody>
