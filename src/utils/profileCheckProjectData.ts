@@ -85,7 +85,9 @@ export const projectList: ProjectBaseInfo[] = [
         checkAccount: async (address: string) => {
             try {
                 if (address?.trim()) {
-                    const response = await axios.get(`/api/pstake/users/airdrop/${address}`);
+                    const response = await axios.get(
+                        `https://vercel-serverless-geekdao.vercel.app/api/fetchAridropPStake?address=${address}`
+                    );
                     let resultTotal = 0;
                     if (response.data?.success) {
                         const airdropDetail = response.data?.message?.eligibility;
