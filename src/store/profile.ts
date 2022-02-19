@@ -10,13 +10,13 @@ export const useProfileStore = defineStore({
         };
     },
     getters: {
-        currentProfile: (state) => {
+        currentProfile(state) {
             return state.profiles.find((e) => e.key === state.currentProfileKey);
         },
-        currentProfileName: (state) => {
+        currentProfileName(state) {
             return state.profiles.find((e) => e.key === state.currentProfileKey)?.name ?? '';
         },
-        currentProfileIndex: (state) => {
+        currentProfileIndex(state) {
             return state.profiles.findIndex((e) => e.key === state.currentProfileKey);
         }
     },

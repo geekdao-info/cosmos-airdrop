@@ -1,11 +1,11 @@
 import { accDiv } from './acc';
 
 export function getActualAmount(amount: string | number) {
-    return Number(accDiv(Number(amount), 1e6).toFixed(2));
+    return Number(myFixed(String(accDiv(Number(amount), 1e6)), 2));
 }
 
 export function getFormatAmount(amount: string | number) {
-    return Number(Number(amount).toFixed(2));
+    return Number(myFixed(String(amount), 2));
 }
 
 /*
@@ -17,4 +17,21 @@ export function encodeAddress(address: string) {
     } else {
         return address.trim();
     }
+}
+
+/**
+ * 保留小数点几位数, 自动补零, 四舍五入
+ * @param num: 数值
+ * @param digit: 小数点后位数
+ * @returns string
+ */
+export function myFixed(num: string, digit: number): string {
+    if (Object.is(parseFloat(num), NaN)) {
+        console.log(`传入的值：${num}不是一个数字`);
+        return num;
+    }
+    const numFloat = parseFloat(num);
+    return (
+        Math.round((numFloat + Number.EPSILON) * Math.pow(10, digit)) / Math.pow(10, digit)
+    ).toFixed(digit);
 }

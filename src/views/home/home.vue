@@ -38,31 +38,25 @@ const openManageProfile = () => {
         >
             <div class="flex-none ml-6">
                 <!-- <img width="200" src="../../assets/logo.png" />  -->
-                <span class="text-primary font-bold text-3xl">Cosmos</span
-                ><span class="font-extrabold text-3xl">Drops</span>
+                <span class="text-primary font-bold text-xl lg:text-3xl">Cosmos</span
+                ><span class="font-extrabold text-xl lg:text-3xl">Drops</span>
                 <div class="ml-2 badge badge-primary badge-outline">Beta</div>
             </div>
 
-            <div class="flex-1">
-                <!-- <div class="flex space-x-2 mx-8 hidden lg:mx-40 lg:flex">
-                    <input
-                        type="text"
-                        placeholder="Search"
-                        class="w-full input input-primary input-bordered"
-                    />
-                    <button class="btn btn-primary">go</button>
-                </div> -->
-            </div>
+            <div class="flex-1"> </div>
 
-            <div class="navbar max-w-none mr-5">
+            <div class="navbar max-w-none mr-2 lg:mr-5">
                 <!-- <div class="mr-8" data-set-theme="dark"><icon icon-class="wb_sunny"></icon></div> -->
                 <a-dropdown :trigger="['click']">
-                    <div class="btn btn-primary no-animation rounded-full" @click.prevent
+                    <div
+                        class="btn btn-primary no-animation rounded-full btn-sm lg:btn-md"
+                        @click.prevent
                         >{{ profileStore.currentProfileName || 'Manage' }} | Profile</div
                     >
                     <template #overlay>
                         <a-menu>
                             <a-menu-item
+                                style="text-align: center"
                                 v-for="item in profileStore.profiles"
                                 :key="item.key"
                                 @click="changeProfile(item.key, item.name)"
@@ -79,37 +73,6 @@ const openManageProfile = () => {
                         </a-menu>
                     </template>
                 </a-dropdown>
-                <!-- <div class="dropdown dropdown-end" title="Change Theme">
-                    <div tabindex="0" class="m-1 normal-case btn-ghost btn">
-                        <span class="hidden md:inline"> Manage Profile </span>
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="inline-block w-4 h-4 ml-1 fill-current"
-                            viewBox="0 0 1792 1792"
-                        >
-                            <path
-                                d="M1395 736q0 13-10 23l-466 466q-10 10-23 10t-23-10l-466-466q-10-10-10-23t10-23l50-50q10-10 23-10t23 10l393 393 393-393q10-10 23-10t23 10l50 50q10 10 10 23z"
-                            />
-                        </svg>
-                    </div>
-                    <div
-                        class="mt-16 overflow-y-auto shadow-2xl top-px dropdown-content h-96 w-52 rounded-b-box bg-base-200 text-base-content"
-                        v-bind:class="{
-                            'rounded-t-box': isHomepage && !toggleNavClass()
-                        }"
-                    >
-                        <ul class="p-4 menu compact">
-                            <li v-for="(theme, index) in themes">
-                                <a
-                                    tabindex="0"
-                                    :data-set-theme="theme.id"
-                                    data-act-class="active"
-                                    >{{ theme.name }}</a
-                                >
-                            </li>
-                        </ul>
-                    </div>
-                </div> -->
             </div>
         </div>
         <!-- Manage Your Profile to Check multi-account AirDrop Info -->
@@ -144,7 +107,10 @@ const openManageProfile = () => {
                 ></project-card-vue>
             </div>
         </div>
-        <h1 class="pt-12 text-center font-bold text-2xl">Airdrop Detail</h1>
+        <div class="text-center">
+            <h1 class="pt-12 font-bold text-2xl">Other Airdrop Detail</h1>
+            <p>Don't support Check your Profile. DYOR!</p>
+        </div>
         <div class="grid ustify-items-center lg:px-20">
             <!-- Project Card Info -->
             <div
