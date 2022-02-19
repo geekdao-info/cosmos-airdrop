@@ -21,12 +21,17 @@ export const projectList: ProjectBaseInfo[] = [
             'https://medium.com/desmosnetwork/announcing-dsm-airdrop-to-the-interchain-community-39d9837dcc5c',
         isCheckAccount: true,
         checkAccount: async (address: string) => {
-            if (address?.trim()) {
-                const response = await axios.get(
-                    `https://api.airdrop.desmos.network/users/${address}`
-                );
-                return getFormatAmount(response.data?.dsm_allotted ?? 0);
-            } else {
+            try {
+                if (address?.trim()) {
+                    const response = await axios.get(
+                        `https://api.airdrop.desmos.network/users/${address}`
+                    );
+                    return getFormatAmount(response.data?.dsm_allotted ?? 0);
+                } else {
+                    return 0;
+                }
+            } catch (e) {
+                console.log('err', e);
                 return 0;
             }
         }
@@ -46,12 +51,17 @@ export const projectList: ProjectBaseInfo[] = [
         detail: 'NETA is money on the Juno Network. It‘s sole purpose is to function as a scarce decentralized store of value asset for the Juno ecosystem and inter-chain Cosmos at large. Claimable for free by thousands of Juno delegates at inception. Never a seed sale, private sale or public sale. Verifiable zero NETA is held in reserve by any third party ie. developers, teams, founders or companies. The Juno community owns all NETA in existence. Distributed widely and fairly via the criteria, listed in the distribution section. How & when is NETA distributed ? All NETA enter general public circulation between February 1st – February 28th, 2022. At the time of the Moneta upgrade (December 15th) a snapshot was taken of the Juno Network distributed ledger. The smart contract enabled NETA genesis claim window opens on February 1st 2022 based on the following criteria designed to mitigate gaming of the distribution and incentivize loyal network supporters only:(1)Person delegated at least 25 JUNO on-chain = 1 NETA,(2)Person voted on at least 1 on-chain governance proposal = 10 bonus NETA,(3)Person voted on all on-chain governance proposals = 5 bonus NETA,(4)Person delegated to at least 1 validator outside the top 20 = 0.2 bonus NETA. Starting February 1st NETA is claimable. Unclaimed NETA will hard-decay on day 28. Meaning all unclaimed NETA will automatically permanently burn on February 28th 2022',
         officialWeb: 'https://neta.money/',
         airdropLink: 'https://cosmospug.com/neta-airdrop-for-juno-holders/',
-        isCheckAccount: true,
+        isCheckAccount: false,
         checkAccount: (address: string) => {
-            if (address?.trim()) {
-                const neta = netaAirdropList.find((e) => e.address === address.trim());
-                return getActualAmount(neta?.amount ?? 0);
-            } else {
+            try {
+                if (address?.trim()) {
+                    const neta = netaAirdropList.find((e) => e.address === address.trim());
+                    return getActualAmount(neta?.amount ?? 0);
+                } else {
+                    return 0;
+                }
+            } catch (e) {
+                console.log('err', e);
                 return 0;
             }
         }
@@ -73,28 +83,36 @@ export const projectList: ProjectBaseInfo[] = [
         airdropLink: 'https://blog.pstake.finance/2022/02/18/pstake-airdrop-explained-2/',
         isCheckAccount: true,
         checkAccount: async (address: string) => {
-            if (address?.trim()) {
-                const response = await axios.get(
-                    `https://api.airdrop.pstake.finance/users/airdrop/${address}`
-                );
-                let resultTotal = 0;
-                if (response.data?.success) {
-                    const airdropDetail = response.data?.message;
-                    resultTotal =
-                        airdropDetail.atomStakeDrop +
-                        airdropDetail.auditAtomStakeDrop +
-                        airdropDetail.cosmosStaker +
-                        airdropDetail.crvHolder +
-                        airdropDetail.cvxcrvHolder +
-                        airdropDetail.osmosisStaker +
-                        airdropDetail.persistenceStaker +
-                        airdropDetail.stkAaveHolde +
-                        airdropDetail.stkAtomHolder +
-                        airdropDetail.stkXprtHolder +
-                        airdropDetail.yvecrvHolder;
+            try {
+                if (address?.trim()) {
+                    const response = await axios.get(`/api/pstake/users/airdrop/${address}`);
+                    let resultTotal = 0;
+                    if (response.data?.success) {
+                        const airdropDetail = response.data?.message?.eligibility;
+                        console.log('airdropDetail - pstake', airdropDetail);
+                        resultTotal =
+                            airdropDetail?.atomStakeDrop ||
+                            0 + airdropDetail?.auditAtomStakeDrop ||
+                            0 + airdropDetail?.cosmosStaker ||
+                            0 + airdropDetail?.crvHolder ||
+                            0 + airdropDetail?.cvxcrvHolder ||
+                            0 + airdropDetail?.osmosisStaker ||
+                            0 + airdropDetail?.persistenceStaker ||
+                            0 + airdropDetail?.stkAaveHolder ||
+                            0 + airdropDetail?.stkAtomHolder ||
+                            0 + airdropDetail?.stkXprtHolder ||
+                            0 + airdropDetail?.yvecrvHolder ||
+                            0;
+
+                        console.log('airdropDetail - pstake - resultTotal000', resultTotal);
+                    }
+                    console.log('airdropDetail - pstake - resultTotal', resultTotal);
+                    return getFormatAmount(resultTotal ?? 0);
+                } else {
+                    return 0;
                 }
-                return getFormatAmount(resultTotal ?? 0);
-            } else {
+            } catch (e) {
+                console.log('err', e);
                 return 0;
             }
         }

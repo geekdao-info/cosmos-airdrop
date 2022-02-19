@@ -57,7 +57,6 @@ export const useProjectStore = defineStore({
             const currentProfileKey = profileStore?.currentProfile?.key ?? 0;
             const profileAllottedIndex = this.getProfileProjectAllottedIndex(projectKey);
             console.log('airdropInfo length', airdropInfo.length);
-            debugger;
             const total = airdropInfo.reduce(function (accumulator, currentValue) {
                 return accAdd(accumulator, Number(currentValue.amount));
             }, 0);

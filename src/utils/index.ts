@@ -28,7 +28,7 @@ export function encodeAddress(address: string) {
 export function myFixed(num: string, digit: number): string {
     if (Object.is(parseFloat(num), NaN)) {
         console.log(`传入的值：${num}不是一个数字`);
-        return num;
+        return '0';
     }
     const numFloat = parseFloat(num);
     return (
