@@ -55,5 +55,48 @@ export const projectList: ProjectBaseInfo[] = [
                 return 0;
             }
         }
+    },
+    {
+        key: 'pstake',
+        icon: 'https://airdrop.pstake.finance/static/media/stake_icon.893bd3d3bcc50c5081604ae9002f38a0.svg',
+        name: 'PSTAKE',
+        coin: 'PSTAKE',
+        label: ['ATOM', 'OSMO', 'XPRT', 'CRV', 'stkAAVE'],
+        claimStatus: 'Claimable',
+        claimStatusClass: 'bg-primary',
+        snapDate: 'many Date - detail',
+        airdropDate: 'many Date - detail',
+        description:
+            'Airdrop tokens are vested over 6 months and released monthly, with the first distribution taking place on February 24th, 2022',
+        detail: 'Allocation: (1) pSTAKE’s governance token, $PSTAKE, will be distributed to key stakeholders within the pSTAKE ecosystem.(2) 30M $PSTAKE (6% of the total genesis supply) will be distributed, based on the snapshots previously taken. (3) 21.25M $PSTAKE will be distributed to eligible stakers of ATOM, XPRT and OSMO. (4) 5M $PSTAKE will be distributed to the communities of certain DeFi protocols (Aave and Curve Finance). (5) 750K $PSTAKE will be equally distributed amongst all eligible early adopters of the pSTAKE protocol. (6) 450K $PSTAKE will be distributed to our Cosmos StakeDrop campaign participants, with 50K additional tokens distributed to those who delegated with AUDIT.one during the StakeDrop. (7) 2.5M $PSTAKE tokens have been set aside in a Strategic Reserve for future airdrops. Distribution: (1) All airdrop tokens will be distributed directly on the Persistence Core-1 chain. Eligible airdrop recipients will need to create and submit a Persistence wallet addresses (except for StakeDrop participants and XPRT stakers). (2) Airdrop tokens are vested over 6 months and released monthly, with the first distribution taking place on February 24th, 2022. (3) To be eligible for distributions in months 2-6, recipients must deposit and stake at least 20 ATOM via pSTAKE (mint 20 stkATOM) in the eligible ERC20 wallet after the first distribution but before 20th March 2022 (only required once to receive the remaining 5 distributions). A dedicated article will be released for ATOM, XPRT and OSMO stakers (who do not have an eligible ERC20 address) after the first airdrop distribution (which will be sent to all eligible airdrop recipients). ',
+        officialWeb: 'https://airdrop.pstake.finance/',
+        airdropLink: 'https://blog.pstake.finance/2022/02/18/pstake-airdrop-explained-2/',
+        isCheckAccount: true,
+        checkAccount: async (address: string) => {
+            if (address?.trim()) {
+                const response = await axios.get(
+                    `https://api.airdrop.pstake.finance/users/airdrop/${address}`
+                );
+                let resultTotal = 0;
+                if (response.data?.success) {
+                    const airdropDetail = response.data?.message;
+                    resultTotal =
+                        airdropDetail.atomStakeDrop +
+                        airdropDetail.auditAtomStakeDrop +
+                        airdropDetail.cosmosStaker +
+                        airdropDetail.crvHolder +
+                        airdropDetail.cvxcrvHolder +
+                        airdropDetail.osmosisStaker +
+                        airdropDetail.persistenceStaker +
+                        airdropDetail.stkAaveHolde +
+                        airdropDetail.stkAtomHolder +
+                        airdropDetail.stkXprtHolder +
+                        airdropDetail.yvecrvHolder;
+                }
+                return getFormatAmount(resultTotal ?? 0);
+            } else {
+                return 0;
+            }
+        }
     }
 ];
