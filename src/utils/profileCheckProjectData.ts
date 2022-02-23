@@ -118,5 +118,41 @@ export const projectList: ProjectBaseInfo[] = [
                 return 0;
             }
         }
+    },
+    {
+        key: 'like',
+        icon: 'https://app.like.co/favicon.png',
+        name: 'LIKE',
+        coin: 'LIKE',
+        label: ['ATOM', 'Osmosis', 'Civic Liker'],
+        claimStatus: 'Claimable',
+        claimStatusClass: 'bg-primary',
+        snapDate: '2021-11-30',
+        airdropDate: '2022-02-22',
+        description:
+            'If you are ATOM/OSMO holders or Civic Liker before 2021.11.30, you can claim LIKE and participate in LikeCoin governance.',
+        detail: 'If you are ATOM/OSMO holders or Civic Liker before 2021.11.30, you can claim LIKE and participate in LikeCoin governance. ',
+        officialWeb: 'https://app.like.co/',
+        airdropLink: 'https://app.like.co/airdrop/check',
+        isCheckAccount: true,
+        checkAccount: async (address: string) => {
+            try {
+                if (address?.trim()) {
+                    const response = await axios.get(
+                        `https://vercel-serverless-geekdao.vercel.app/api/getLikeAirdropInfo?address=${address}`
+                    );
+                    if (response.data?.isEligibleAddress) {
+                        return getActualAmount(response.data?.allocatedAmount ?? 0, 1e9);
+                    } else {
+                        return 0;
+                    }
+                } else {
+                    return 0;
+                }
+            } catch (e) {
+                console.log('err', e);
+                return 0;
+            }
+        }
     }
 ];

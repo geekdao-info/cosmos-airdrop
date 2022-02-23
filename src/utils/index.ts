@@ -1,7 +1,7 @@
 import { accDiv } from './acc';
 
-export function getActualAmount(amount: string | number) {
-    return Number(myFixed(String(accDiv(Number(amount), 1e6)), 2));
+export function getActualAmount(amount: string | number, presicion?: number) {
+    return Number(myFixed(String(accDiv(Number(amount), presicion ?? 1e6)), 2));
 }
 
 export function getFormatAmount(amount: string | number) {
