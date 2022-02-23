@@ -14,7 +14,7 @@ export const noCheckProjectList: ProjectBaseInfo[] = [
         claimStatusClass: 'bg-primary',
         snapDate: '2021-06-28',
         airdropDate: '2022-02-09',
-        description: 'Airdrop for ATOM holders voted on proposal 49 & ION holders',
+        description: '',
         detail: 'Airdrop for ATOM holders voted on proposal 49 & ION holders',
         officialWeb: 'https://www.gravitybridge.net/',
         airdropLink: 'https://spacestation.zone/',
@@ -48,8 +48,7 @@ export const noCheckProjectList: ProjectBaseInfo[] = [
         claimStatusClass: 'bg-primary',
         snapDate: '2022-02-08',
         airdropDate: '2022-02-28',
-        description:
-            'Eligibility: 10 Juno staked on February 8, 2022. $RAC tokens are airdropped on February 28, 2022.',
+        description: '',
         detail: 'Eligibility: 10 Juno staked on February 8, 2022. $RAC tokens are airdropped on February 28, 2022. Holding $RAC and providing liquidity makes you eligible for the 2nd airdrop and increase your odds to get airdropped an NFT.',
         officialWeb: 'https://www.racoon.supply/',
         airdropLink: 'https://racoon-supply.vercel.app/',

@@ -105,6 +105,11 @@ const openProjectDetail = () => {
     projectStore.setCurrentProjectKey(props.projectKey);
     projectDetail.value.showDrawer();
 };
+const openOfficialWeb = () => {
+    if (props.officialWeb) {
+        window.open(props.officialWeb, '_blank');
+    }
+};
 </script>
 
 <template>
@@ -118,7 +123,7 @@ const openProjectDetail = () => {
                 ></div
             >
 
-            <div class="card-title flex items-center">
+            <div @click="openOfficialWeb" class="card-title flex items-center link link-hover">
                 <div class="avatar">
                     <div class="rounded-full w-12 h-12">
                         <img :src="icon" />
