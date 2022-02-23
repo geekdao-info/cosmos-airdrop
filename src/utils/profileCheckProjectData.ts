@@ -2,11 +2,15 @@ import axios from 'axios';
 import { ProjectBaseInfo } from '@/types/types';
 import { netaAirdropList } from '@/utils/neta-airdrop';
 import { getActualAmount, getFormatAmount } from '@/utils';
+import netaLogo from '../assets/logo/neta-logo.png';
+import dsmLogo from '../assets/logo/dsm-logo.png';
+import pstakeLogo from '../assets/logo/pstake-logo.png';
+import likeLogo from '../assets/logo/like-logo.png';
 
 export const projectList: ProjectBaseInfo[] = [
     {
         key: 'desmos',
-        icon: 'https://cosmospug.com/wp-content/uploads/2022/01/dsm.png',
+        icon: dsmLogo,
         name: 'DESMOS',
         coin: 'DSM',
         label: ['ATOM', 'Osmosis'],
@@ -38,7 +42,7 @@ export const projectList: ProjectBaseInfo[] = [
     },
     {
         key: 'neta',
-        icon: 'https://neta.money/static/netaCoin-ff914cf961aa01f8dd347705d6238480.png',
+        icon: netaLogo,
         name: 'NETA',
         coin: 'NETA',
         label: ['ATOM', 'JUNO'],
@@ -68,7 +72,7 @@ export const projectList: ProjectBaseInfo[] = [
     },
     {
         key: 'pstake',
-        icon: 'https://airdrop.pstake.finance/static/media/stake_icon.893bd3d3bcc50c5081604ae9002f38a0.svg',
+        icon: pstakeLogo,
         name: 'PSTAKE',
         coin: 'PSTAKE',
         label: ['ATOM', 'OSMO', 'XPRT', 'CRV', 'stkAAVE'],
@@ -121,7 +125,7 @@ export const projectList: ProjectBaseInfo[] = [
     },
     {
         key: 'like',
-        icon: 'https://app.like.co/favicon.png',
+        icon: likeLogo,
         name: 'LIKE',
         coin: 'LIKE',
         label: ['ATOM', 'Osmosis', 'Civic Liker'],

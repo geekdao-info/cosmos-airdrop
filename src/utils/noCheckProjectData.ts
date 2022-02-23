@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { ProjectBaseInfo } from '@/types/types';
 import racoonLogo from '../assets/logo/racoon-logo.png';
+import gravityLogo from '../assets/logo/gravity-logo.png';
 
 export const noCheckProjectList: ProjectBaseInfo[] = [
     {
         key: 'gravity', // 必须唯一
-        icon: 'https://static.wixstatic.com/media/c07978_50ca8b446f49409c894085ac86dcf0e1~mv2.png/v1/fill/w_478,h_478,fp_0.50_0.50,q_95/c07978_50ca8b446f49409c894085ac86dcf0e1~mv2.webp',
+        icon: gravityLogo,
         name: 'GRAVITY',
         coin: 'GRAVITON',
         label: ['ATOM'],
