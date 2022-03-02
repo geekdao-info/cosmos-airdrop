@@ -17,11 +17,17 @@ declare module 'vue' {
     APopconfirm: typeof import('ant-design-vue/es')['Popconfirm']
     ATooltip: typeof import('ant-design-vue/es')['Tooltip']
     ATypographyParagraph: typeof import('ant-design-vue/es')['TypographyParagraph']
+    DesmosInfo: typeof import('./src/components/projectInfo/DesmosInfo.vue')['default']
+    GravityInfo: typeof import('./src/components/projectInfo/GravityInfo.vue')['default']
     Icon: typeof import('./src/components/Icon.vue')['default']
+    LikeInfo: typeof import('./src/components/projectInfo/LikeInfo.vue')['default']
     ManageProfile: typeof import('./src/components/ManageProfile.vue')['default']
+    NetaInfo: typeof import('./src/components/projectInfo/NetaInfo.vue')['default']
     ProjectCard: typeof import('./src/components/ProjectCard.vue')['default']
     ProjectDetail: typeof import('./src/components/ProjectDetail.vue')['default']
     ProjectFooter: typeof import('./src/components/ProjectFooter.vue')['default']
+    PstakeInfo: typeof import('./src/components/projectInfo/PstakeInfo.vue')['default']
+    RacoonInfo: typeof import('./src/components/projectInfo/RacoonInfo.vue')['default']
   }
 }
 

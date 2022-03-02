@@ -6,9 +6,11 @@ import './api/interceptor';
 import './assets/style/tailwind.css';
 import './assets/icon/iconfont.js';
 import Icon from '@/components/Icon.vue';
+import GlobalComponents from '@/components/projectInfo';
 
 const app = createApp(App);
 app.use(router);
 app.use(store);
 app.component('Icon', Icon);
+app.use(GlobalComponents);
 app.mount('#app');

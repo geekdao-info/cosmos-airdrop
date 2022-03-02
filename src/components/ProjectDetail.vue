@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { useProjectStore } from '@/store/project';
 
 const props = defineProps<{
@@ -10,6 +10,10 @@ const props = defineProps<{
 
 const projectStore = useProjectStore();
 const visible = ref<boolean>(false);
+
+const currentComponent = computed((item) => {
+    return props.detail;
+});
 
 const afterVisibleChange = (bool: boolean) => {
     console.log('visible', bool);
@@ -52,7 +56,7 @@ defineExpose({
             >
         </template>
         <div>
-            {{ props.detail }}
+            <component :is="currentComponent"> </component>
         </div>
     </a-drawer>
 </template>

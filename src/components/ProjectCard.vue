@@ -113,7 +113,7 @@ const openOfficialWeb = () => {
 </script>
 
 <template>
-    <card class="card-bordered w-full bg-base-200 border-1 hover:border-primary">
+    <card class="card-bordered w-full bg-indigo-50 border-1 hover:border-primary">
         <div class="card-body relative">
             <div v-if="claimStatus" class="absolute top-0 right-0"
                 ><div
@@ -153,7 +153,7 @@ const openOfficialWeb = () => {
                 <button v-if="loading" class="btn btn-outline btn-primary loading">loading</button>
 
                 <div v-else>
-                    <button class="btn mr-2" @click="openProjectDetail">
+                    <button class="btn mr-2 btn-outline btn-primary" @click="openProjectDetail">
                         <span class="ml-1">DETAIL</span>
                     </button>
 

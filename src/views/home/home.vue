@@ -36,9 +36,11 @@ const openManageProfile = () => {
             id="nav"
             class="flex justify-end items-center border-base-200 bg-base-100 text-base-content sticky inset-x-0 top-0 z-50 w-full transition duration-200 ease-in-out border-b"
         >
-            <div class="flex-none ml-6">
-                <!-- <img width="200" src="../../assets/logo.png" />  -->
-                <span class="text-primary font-bold text-xl lg:text-3xl">Cosmos</span
+            <div class="flex-0 ml-6">
+                <span class="text-primary font-bold text-xl lg:text-3xl"
+                    ><span>C</span
+                    ><span><img class="inline" width="20" src="../../assets/logo.png" /></span
+                    ><span>smos</span></span
                 ><span class="font-extrabold text-xl lg:text-3xl">Drops</span>
                 <div class="ml-2 badge badge-primary badge-outline">Beta</div>
             </div>
