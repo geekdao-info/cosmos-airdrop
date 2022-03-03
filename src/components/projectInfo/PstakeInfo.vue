@@ -325,7 +325,6 @@
                         src="https://www.youtube.com/embed/u-6hzCvuu3k?feature=oembed"
                         frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen=""
                         style="max-width: 100%; max-height: 315px"
                     ></iframe> </div
             ></figure>
