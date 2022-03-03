@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { useProjectStore } from '@/store/project';
+import { message } from 'ant-design-vue';
 
 const props = defineProps<{
     detail?: string;
     officialWeb?: string;
     airdropLink?: string;
+    airdropClaim?: string;
 }>();
 
 const projectStore = useProjectStore();
@@ -25,11 +27,31 @@ const showDrawer = () => {
 const openOfficialWeb = () => {
     if (props.officialWeb) {
         window.open(props.officialWeb, '_blank');
+    } else {
+        message.error({
+            content: 'the current page is missing',
+            class: 'text-primary'
+        });
     }
 };
 const openAirdropDetailWeb = () => {
     if (props.airdropLink) {
         window.open(props.airdropLink, '_blank');
+    } else {
+        message.error({
+            content: 'the current page is missing',
+            class: 'text-primary'
+        });
+    }
+};
+const openAirdropClaimWeb = () => {
+    if (props.airdropClaim) {
+        window.open(props.airdropClaim, '_blank');
+    } else {
+        message.error({
+            content: 'the current page is missing',
+            class: 'text-primary'
+        });
     }
 };
 
@@ -40,7 +62,7 @@ defineExpose({
 <template>
     <a-drawer
         v-model:visible="visible"
-        width="40vw"
+        width="50vw"
         title="Detail"
         placement="right"
         :footer-style="{ textAlign: 'right' }"
@@ -48,7 +70,10 @@ defineExpose({
         @after-visible-change="afterVisibleChange"
     >
         <template #footer class="text-center">
-            <button class="btn btn-outline btn-primary btn-sm" @click="openAirdropDetailWeb"
+            <button class="btn btn-outline btn-primary btn-sm" @click="openAirdropClaimWeb"
+                >CLAIM</button
+            >
+            <button class="btn btn-outline btn-primary btn-sm ml-2" @click="openAirdropDetailWeb"
                 >AIRDROP DETAIL</button
             >
             <button class="btn btn-outline btn-primary btn-sm ml-2" @click="openOfficialWeb"

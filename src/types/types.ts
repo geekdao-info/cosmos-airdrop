@@ -17,6 +17,7 @@ export interface ProjectBaseInfo {
     airdropDate: string;
     description: string;
     detail?: string;
+    airdropClaim?: string;
     airdropLink?: string;
     officialWeb: string;
     coin: string;

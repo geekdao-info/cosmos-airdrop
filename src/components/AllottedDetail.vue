@@ -5,6 +5,7 @@ import { encodeAddress } from '@/utils';
 import { accAdd } from '@/utils/acc';
 import { getFormatAmount } from '@/utils';
 import { RightCircleOutlined } from '@ant-design/icons-vue';
+import { message } from 'ant-design-vue';
 
 components: {
     RightCircleOutlined;
@@ -24,11 +25,31 @@ const showDrawer = () => {
 const openOfficialWeb = () => {
     if (projectStore.currentProject?.officialWeb) {
         window.open(projectStore.currentProject.officialWeb, '_blank');
+    } else {
+        message.error({
+            content: 'the current page is missing',
+            class: 'text-primary'
+        });
     }
 };
 const openAirdropDetailWeb = () => {
     if (projectStore.currentProject?.airdropLink) {
         window.open(projectStore.currentProject.airdropLink, '_blank');
+    } else {
+        message.error({
+            content: 'the current page is missing',
+            class: 'text-primary'
+        });
+    }
+};
+const openAirdropClaimWeb = () => {
+    if (projectStore.currentProject?.airdropClaim) {
+        window.open(projectStore.currentProject?.airdropClaim, '_blank');
+    } else {
+        message.error({
+            content: 'the current page is missing',
+            class: 'text-primary'
+        });
     }
 };
 watch(
@@ -60,7 +81,10 @@ defineExpose({
         @after-visible-change="afterVisibleChange"
     >
         <template #footer class="text-center">
-            <button class="btn btn-outline btn-primary btn-sm" @click="openAirdropDetailWeb"
+            <button class="btn btn-outline btn-primary btn-sm" @click="openAirdropClaimWeb"
+                >CLAIM</button
+            >
+            <button class="btn btn-outline btn-primary btn-sm ml-2" @click="openAirdropDetailWeb"
                 >AIRDROP DETAIL</button
             >
             <button class="btn btn-outline btn-primary btn-sm ml-2" @click="openOfficialWeb"

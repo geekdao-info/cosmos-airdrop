@@ -98,8 +98,10 @@ watch(
 );
 
 const openAllottedDetail = () => {
-    projectStore.setCurrentProjectKey(props.projectKey);
-    allottedDetail.value.showDrawer();
+    if (allottedAllAmount.value > 0) {
+        projectStore.setCurrentProjectKey(props.projectKey);
+        allottedDetail.value.showDrawer();
+    }
 };
 const openProjectDetail = () => {
     projectStore.setCurrentProjectKey(props.projectKey);
@@ -149,24 +151,22 @@ const openOfficialWeb = () => {
             </div>
 
             <p class="mt-2 text-neutral">{{ description }}</p>
-            <div class="justify-end space-x-1">
-                <button v-if="loading" class="btn btn-outline btn-primary loading">loading</button>
-
-                <div v-else>
-                    <button class="btn mr-2 btn-outline btn-primary" @click="openProjectDetail">
-                        <span class="ml-1">DETAIL</span>
-                    </button>
-
-                    <button
-                        v-if="allottedAllAmount"
-                        class="btn btn-primary"
-                        @click="openAllottedDetail"
-                    >
-                        <span class="ml-1"
-                            >{{ getFormatAmount(Number(allottedAllAmount)) }} Allotted
-                        </span>
-                    </button>
-                </div>
+            <div class="flex items-center">
+                <button class="btn mr-2 btn-outline btn-primary" @click="openProjectDetail">
+                    <span class="ml-1">DETAIL</span>
+                </button>
+                <button v-if="loading" class="btn btn-primary loading"
+                    ><span class="ml-1">check airdrop</span></button
+                >
+                <button
+                    v-else-if="props.isCheckAccount"
+                    class="btn btn-primary"
+                    @click="openAllottedDetail"
+                >
+                    <span class="ml-1"
+                        >{{ getFormatAmount(Number(allottedAllAmount)) }} Allotted
+                    </span>
+                </button>
             </div>
         </div>
     </card>

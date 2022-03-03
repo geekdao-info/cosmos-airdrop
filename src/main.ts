@@ -7,6 +7,7 @@ import './assets/style/tailwind.css';
 import './assets/icon/iconfont.js';
 import Icon from '@/components/Icon.vue';
 import GlobalComponents from '@/components/projectInfo';
+import 'ant-design-vue/es/message/style/css';
 
 const app = createApp(App);
 app.use(router);

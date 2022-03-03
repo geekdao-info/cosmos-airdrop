@@ -6,7 +6,6 @@ import Icon from '@/components/Icon.vue';
 import { useProjectStore } from '@/store/project';
 import { useProfileStore } from '@/store/profile';
 import { InfoCircleFilled } from '@ant-design/icons-vue';
-import { noCheckProjectList } from '@/utils/noCheckProjectData';
 import ManageProfile from '@/components/ManageProfile.vue';
 
 components: {
@@ -20,7 +19,6 @@ const profileStore = useProfileStore();
 const currentProfileKey = ref(0);
 const currentProfileName = ref('');
 const projectStore = useProjectStore();
-const noCheckProjects = ref(noCheckProjectList);
 const changeProfile = (key: number, name: string) => {
     // currentProfileKey.value = key;
     // currentProfileName.value = name;
@@ -90,36 +88,6 @@ const openManageProfile = () => {
             >
                 <project-card-vue
                     v-for="(item, index) in projectStore.projects"
-                    :key="index"
-                    :claim-status="item.claimStatus"
-                    :claim-status-class="item.claimStatusClass"
-                    :project-key="item.key"
-                    :is-check-account="item.isCheckAccount"
-                    :airdrop-date="item.airdropDate"
-                    :snap-date="item.snapDate"
-                    :icon="item.icon"
-                    :description="item.description"
-                    :detail="item.detail"
-                    :airdrop-link="item.airdropLink"
-                    :official-web="item.officialWeb"
-                    :label="item.label"
-                    :name="item.name"
-                    :coin="item.coin"
-                    :check-account="item.checkAccount"
-                ></project-card-vue>
-            </div>
-        </div>
-        <div class="text-center">
-            <h1 class="pt-12 font-bold text-2xl">Other Airdrop Detail</h1>
-            <p>Don't support Check your Profile. DYOR!</p>
-        </div>
-        <div class="grid ustify-items-center lg:px-20">
-            <!-- Project Card Info -->
-            <div
-                class="grid grid-cols-1 p-4 gap-4 w-6xl md:grid-cols-2 md:p-8 lg:grid-cols-3 lg:p-10 rounded-box"
-            >
-                <project-card-vue
-                    v-for="(item, index) in noCheckProjects"
                     :key="index"
                     :claim-status="item.claimStatus"
                     :claim-status-class="item.claimStatusClass"
