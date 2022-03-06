@@ -73,7 +73,8 @@ export const projectList: ProjectBaseInfo[] = [
         discord: 'https://discord.com/invite/exswap',
         airdropClaim: '',
         officialWeb: 'https://www.exswap.xyz/',
-        airdropLink: 'https://medium.com/@exswap.xyz/exswap-launch-tokenomics-d49aa4fe4cd7',
+        airdropLink:
+            'https://medium.com/@1964681304joker/exswap-%E5%8D%B3%E5%B0%86%E5%88%B0%E6%9D%A5%E7%9A%84%E7%A9%BA%E6%8A%95-ef3a912b2e04',
         isCheckAccount: false,
         checkAccount: async (address: string) => {
             return 0;
