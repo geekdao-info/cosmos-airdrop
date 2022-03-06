@@ -10,6 +10,7 @@ import racoonLogo from '../assets/logo/racoon-logo.png';
 import gravityLogo from '../assets/logo/gravity-logo.png';
 import hansumLogo from '../assets/logo/hansum-logo.jpeg';
 import exswapLogo from '../assets/logo/exswap-logo.jpeg';
+import cosmicHorizonLogo from '../assets/logo/cosmic-horizon-logo.png';
 
 export const projectList: ProjectBaseInfo[] = [
     {
@@ -24,9 +25,33 @@ export const projectList: ProjectBaseInfo[] = [
         airdropDate: '-',
         description: '',
         detail: 'hansum-info',
+        twitter: 'https://twitter.com/HANSUMtoken',
+        discord: '',
         airdropClaim: '',
         officialWeb: '',
         airdropLink: 'https://medium.com/@hansumteam/hansum-token-distribution-e6369f2d814f',
+        isCheckAccount: false,
+        checkAccount: async (address: string) => {
+            return 0;
+        }
+    },
+    {
+        key: 'coho',
+        icon: cosmicHorizonLogo,
+        name: 'Cosmic Horizon',
+        coin: 'COHO',
+        label: ['COSMOS'],
+        claimStatus: 'Twitter Notice',
+        claimStatusClass: 'bg-accent',
+        snapDate: '-',
+        airdropDate: '-',
+        description: '',
+        detail: 'cosmic-horizon-info',
+        twitter: 'https://twitter.com/CoHo_Cosmos',
+        discord: 'https://discord.com/invite/GTWQCMKvud',
+        airdropClaim: '',
+        officialWeb: 'https://www.cosmic-horizon.com/',
+        airdropLink: '',
         isCheckAccount: false,
         checkAccount: async (address: string) => {
             return 0;
@@ -40,13 +65,15 @@ export const projectList: ProjectBaseInfo[] = [
         label: ['ATOM', 'OSMO'],
         claimStatus: 'Twitter Notice',
         claimStatusClass: 'bg-accent',
-        snapDate: '-',
+        snapDate: '2022-02-23',
         airdropDate: '-',
         description: '',
         detail: 'exswap-info',
+        twitter: 'https://twitter.com/Exswapdotxyz',
+        discord: 'https://discord.com/invite/exswap',
         airdropClaim: '',
-        officialWeb: '',
-        airdropLink: '',
+        officialWeb: 'https://www.exswap.xyz/',
+        airdropLink: 'https://medium.com/@exswap.xyz/exswap-launch-tokenomics-d49aa4fe4cd7',
         isCheckAccount: false,
         checkAccount: async (address: string) => {
             return 0;
@@ -64,7 +91,9 @@ export const projectList: ProjectBaseInfo[] = [
         airdropDate: '2022-02-22',
         description: '',
         detail: 'like-info',
-        airdropClaim: 'https://app.like.co/',
+        twitter: 'https://twitter.com/likecoin',
+        discord: 'https://discord.com/invite/W4DQ6peZZZ',
+        airdropClaim: 'https://app.like.co/airdrop/',
         officialWeb: 'https://app.like.co/',
         airdropLink: 'https://app.like.co/airdrop/check',
         isCheckAccount: true,
@@ -100,8 +129,10 @@ export const projectList: ProjectBaseInfo[] = [
         airdropDate: 'many Date',
         description: '',
         detail: 'pstake-info',
+        twitter: 'https://twitter.com/pStakeFinance',
+        discord: '',
         airdropClaim: 'https://airdrop.pstake.finance/',
-        officialWeb: 'https://airdrop.pstake.finance/',
+        officialWeb: 'https://pstake.finance/',
         airdropLink: 'https://blog.pstake.finance/2022/02/18/pstake-airdrop-explained-2/',
         isCheckAccount: true,
         checkAccount: async (address: string) => {
@@ -153,8 +184,10 @@ export const projectList: ProjectBaseInfo[] = [
         airdropDate: '2022-01-11',
         description: '',
         detail: 'desmos-info',
+        twitter: 'https://twitter.com/DesmosNetwork',
+        discord: 'https://discord.com/invite/ckFcU5vxxc',
         airdropClaim: 'https://airdrop.desmos.network/',
-        officialWeb: 'https://airdrop.desmos.network/',
+        officialWeb: 'https://desmos.network/',
         airdropLink:
             'https://medium.com/desmosnetwork/announcing-dsm-airdrop-to-the-interchain-community-39d9837dcc5c',
         isCheckAccount: true,
@@ -186,6 +219,8 @@ export const projectList: ProjectBaseInfo[] = [
         airdropDate: '2022-02-09',
         description: '',
         detail: 'gravity-info',
+        twitter: 'https://twitter.com/gravity_bridge',
+        discord: 'https://discord.com/invite/d3DshmHpXA',
         airdropClaim: 'https://spacestation.zone/',
         officialWeb: 'https://www.gravitybridge.net/',
         airdropLink: 'https://spacestation.zone/',
@@ -221,6 +256,8 @@ export const projectList: ProjectBaseInfo[] = [
         airdropDate: '2022-02-28',
         description: '',
         detail: 'racoon-info',
+        twitter: 'https://twitter.com/RacoonSupply',
+        discord: 'https://discord.com/invite/QV5cDdxn4q',
         airdropClaim: 'https://racoon-supply.vercel.app/',
         officialWeb: 'https://www.racoon.supply/',
         airdropLink: 'https://racoon-supply.vercel.app/',
@@ -241,6 +278,8 @@ export const projectList: ProjectBaseInfo[] = [
         airdropDate: '2022/02/01 - 28',
         description: '',
         detail: 'neta-info',
+        twitter: 'https://twitter.com/NetaMoney',
+        discord: 'https://discord.com/invite/bK2YYYvjCQ',
         officialWeb: 'https://neta.money/',
         airdropClaim: 'https://neta.money/',
         airdropLink: 'https://neta.money/NETA_Money.pdf',

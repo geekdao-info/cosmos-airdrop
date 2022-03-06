@@ -8,6 +8,8 @@ const props = defineProps<{
     officialWeb?: string;
     airdropLink?: string;
     airdropClaim?: string;
+    twitter?: string;
+    discord?: string;
 }>();
 
 const projectStore = useProjectStore();
@@ -55,6 +57,28 @@ const openAirdropClaimWeb = () => {
     }
 };
 
+const openTwitter = () => {
+    if (props.twitter) {
+        window.open(props.twitter, '_blank');
+    } else {
+        message.error({
+            content: 'the current page is missing',
+            class: 'text-primary'
+        });
+    }
+};
+
+const openDiscord = () => {
+    if (props.discord) {
+        window.open(props.discord, '_blank');
+    } else {
+        message.error({
+            content: 'the current page is missing',
+            class: 'text-primary'
+        });
+    }
+};
+
 defineExpose({
     showDrawer
 });
@@ -70,7 +94,9 @@ defineExpose({
         @after-visible-change="afterVisibleChange"
     >
         <template #footer class="text-center">
-            <button class="btn btn-outline btn-primary btn-sm" @click="openAirdropClaimWeb"
+            <button class="btn btn-primary btn-sm ml-2" @click="openTwitter">twitter</button>
+            <button class="btn btn-primary btn-sm ml-2" @click="openDiscord">discord</button>
+            <button class="btn btn-outline btn-primary btn-sm ml-2" @click="openAirdropClaimWeb"
                 >CLAIM</button
             >
             <button class="btn btn-outline btn-primary btn-sm ml-2" @click="openAirdropDetailWeb"

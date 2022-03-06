@@ -17,6 +17,9 @@ const props = defineProps<{
     snapDate: string;
     airdropDate: string;
     description: string;
+    twitter?: string;
+    discord?: string;
+    airdropClaim?: string;
     airdropLink?: string;
     officialWeb?: string;
     detail?: string;
@@ -173,8 +176,11 @@ const openOfficialWeb = () => {
     <AllottedDetail ref="allottedDetail" />
     <ProjectDetail
         :detail="props.detail"
+        :airdropClaim="props.airdropClaim"
         :officialWeb="props.officialWeb"
         :airdropLink="props.airdropLink"
+        :twitter="props.twitter"
+        :discord="props.discord"
         ref="projectDetail"
     />
 </template>

@@ -17,6 +17,8 @@ export interface ProjectBaseInfo {
     airdropDate: string;
     description: string;
     detail?: string;
+    twitter?: string;
+    discord?: string;
     airdropClaim?: string;
     airdropLink?: string;
     officialWeb: string;
