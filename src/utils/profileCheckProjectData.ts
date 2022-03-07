@@ -13,6 +13,9 @@ import exswapLogo from '../assets/logo/exswap-logo.jpeg';
 import senatusLogo from '../assets/logo/senatus-logo.png';
 import hopeLogo from '../assets/logo/hope-logo.png';
 import cronusLogo from '../assets/logo/cronus-logo.jpeg';
+import craftLogo from '../assets/logo/craft-logo.jpeg';
+import fotLogo from '../assets/logo/fot-logo.jpeg';
+import diffusionLogo from '../assets/logo/diffusion-logo.jpeg';
 import cosmicHorizonLogo from '../assets/logo/cosmic-horizon-logo.png';
 
 export const projectList: ProjectBaseInfo[] = [
@@ -31,7 +34,7 @@ export const projectList: ProjectBaseInfo[] = [
         twitter: 'https://twitter.com/cronusfinance',
         discord: 'https://discord.com/invite/cronusfinance',
         airdropClaim: '',
-        officialWeb: '-',
+        officialWeb: '',
         airdropLink: 'https://medium.com/@cronusfinance/the-cronus-airdrop-e387aceca90c',
         isCheckAccount: false,
         checkAccount: async (address: string) => {
@@ -55,6 +58,50 @@ export const projectList: ProjectBaseInfo[] = [
         airdropClaim: '',
         officialWeb: '',
         airdropLink: 'https://www.docdroid.net/c9r6BP4/spqr-whitepaper-v01-pdf',
+        isCheckAccount: false,
+        checkAccount: async (address: string) => {
+            return 0;
+        }
+    },
+    {
+        key: 'Craft',
+        icon: craftLogo,
+        name: 'Craft Economy',
+        coin: 'CRAFT',
+        label: ['CRAFT/OSMO', 'CRAFT/ATOM'],
+        claimStatus: 'Twitter Notice',
+        claimStatusClass: 'bg-accent',
+        snapDate: '-',
+        airdropDate: '-',
+        description: '',
+        detail: 'craft-info',
+        twitter: 'https://twitter.com/crafteconomy_',
+        discord: 'https://discord.com/invite/crafteconomy',
+        airdropClaim: '',
+        officialWeb: 'https://crafteconomy.io/',
+        airdropLink: 'https://docs.crafteconomy.io/tokenomics/craft',
+        isCheckAccount: false,
+        checkAccount: async (address: string) => {
+            return 0;
+        }
+    },
+    {
+        key: 'diffusion',
+        icon: diffusionLogo,
+        name: 'Diffusion Finance',
+        coin: 'DIFF',
+        label: ['UNI', 'OSMO', 'Evmos Community'],
+        claimStatus: 'Twitter Notice',
+        claimStatusClass: 'bg-accent',
+        snapDate: '-',
+        airdropDate: '-',
+        description: '',
+        detail: 'diffusion-info',
+        twitter: 'https://twitter.com/diffusion_fi',
+        discord: 'https://discord.com/invite/diffusion-fi',
+        airdropClaim: '',
+        officialWeb: 'https://diffusion.fi/',
+        airdropLink: 'https://medium.com/@diffusion_fi/diffusion-tokenomics-ae7ee46e36c7',
         isCheckAccount: false,
         checkAccount: async (address: string) => {
             return 0;
@@ -99,6 +146,29 @@ export const projectList: ProjectBaseInfo[] = [
         airdropClaim: '',
         officialWeb: '',
         airdropLink: 'https://medium.com/@hansumteam/hansum-token-distribution-e6369f2d814f',
+        isCheckAccount: false,
+        checkAccount: async (address: string) => {
+            return 0;
+        }
+    },
+    {
+        key: 'fot',
+        icon: fotLogo,
+        name: 'Fortis Oeconomia',
+        coin: 'FOT',
+        label: ['ATOM', 'JUNO'],
+        claimStatus: 'Snapshot',
+        claimStatusClass: 'bg-warning',
+        snapDate: '2021-12-14',
+        airdropDate: '2022-03-28 | 2022-04-14',
+        description: '',
+        detail: 'fortis-info',
+        twitter: 'https://twitter.com/Fortisoeconomia',
+        discord: '',
+        airdropClaim: '',
+        officialWeb: 'https://www.fortisoeconomia.com',
+        airdropLink:
+            'https://fortisoeconomia.medium.com/fortis-oeconomia-airdrop-announcement-ec0990219184',
         isCheckAccount: false,
         checkAccount: async (address: string) => {
             return 0;
