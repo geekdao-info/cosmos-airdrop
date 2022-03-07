@@ -10,9 +10,55 @@ import racoonLogo from '../assets/logo/racoon-logo.png';
 import gravityLogo from '../assets/logo/gravity-logo.png';
 import hansumLogo from '../assets/logo/hansum-logo.jpeg';
 import exswapLogo from '../assets/logo/exswap-logo.jpeg';
+import hopeLogo from '../assets/logo/hope-logo.jpeg';
+import cronusLogo from '../assets/logo/cronus-logo.jpeg';
 import cosmicHorizonLogo from '../assets/logo/cosmic-horizon-logo.png';
 
 export const projectList: ProjectBaseInfo[] = [
+    {
+        key: 'Cronus',
+        icon: cronusLogo,
+        name: 'Cronus',
+        coin: 'CRN',
+        label: ['ATOM', 'OSMO', 'JUNO', 'Evmos'],
+        claimStatus: 'Upcoming',
+        claimStatusClass: 'bg-secondary',
+        snapDate: '2022/03/06-28',
+        airdropDate: '-',
+        description: '',
+        detail: 'cronus-info',
+        twitter: 'https://twitter.com/cronusfinance',
+        discord: 'https://discord.com/invite/cronusfinance',
+        airdropClaim: '',
+        officialWeb: '-',
+        airdropLink: 'https://medium.com/@cronusfinance/the-cronus-airdrop-e387aceca90c',
+        isCheckAccount: false,
+        checkAccount: async (address: string) => {
+            return 0;
+        }
+    },
+    {
+        key: 'hope',
+        icon: hopeLogo,
+        name: 'Hope Galaxy',
+        coin: 'HOPE',
+        label: ['NETA', 'OSMO', 'JUNO'],
+        claimStatus: 'Upcoming',
+        claimStatusClass: 'bg-secondary',
+        snapDate: '2022-03',
+        airdropDate: '2022-04',
+        description: '',
+        detail: 'hope-info',
+        twitter: 'https://twitter.com/HopeGalaxyNFT',
+        discord: 'https://discord.com/invite/BfKPacc5jF',
+        airdropClaim: '',
+        officialWeb: 'https://linktr.ee/HopeGalaxy',
+        airdropLink: 'https://hopegalaxy.medium.com/airdrop-live-hope-cw20-7a0cff53d28b',
+        isCheckAccount: false,
+        checkAccount: async (address: string) => {
+            return 0;
+        }
+    },
     {
         key: 'hansum',
         icon: hansumLogo,
