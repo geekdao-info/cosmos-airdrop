@@ -10,7 +10,8 @@ import racoonLogo from '../assets/logo/racoon-logo.png';
 import gravityLogo from '../assets/logo/gravity-logo.png';
 import hansumLogo from '../assets/logo/hansum-logo.jpeg';
 import exswapLogo from '../assets/logo/exswap-logo.jpeg';
-import hopeLogo from '../assets/logo/hope-logo.jpeg';
+import senatusLogo from '../assets/logo/senatus-logo.png';
+import hopeLogo from '../assets/logo/hope-logo.png';
 import cronusLogo from '../assets/logo/cronus-logo.jpeg';
 import cosmicHorizonLogo from '../assets/logo/cosmic-horizon-logo.png';
 
@@ -32,6 +33,28 @@ export const projectList: ProjectBaseInfo[] = [
         airdropClaim: '',
         officialWeb: '-',
         airdropLink: 'https://medium.com/@cronusfinance/the-cronus-airdrop-e387aceca90c',
+        isCheckAccount: false,
+        checkAccount: async (address: string) => {
+            return 0;
+        }
+    },
+    {
+        key: 'Senatus',
+        icon: senatusLogo,
+        name: 'Senatus',
+        coin: 'SPQR',
+        label: ['ATOM', 'JUNO'],
+        claimStatus: 'Twitter Notice',
+        claimStatusClass: 'bg-accent',
+        snapDate: '-',
+        airdropDate: '-',
+        description: '',
+        detail: 'senatus-info',
+        twitter: 'https://twitter.com/SenatusWorld',
+        discord: '',
+        airdropClaim: '',
+        officialWeb: '',
+        airdropLink: 'https://www.docdroid.net/c9r6BP4/spqr-whitepaper-v01-pdf',
         isCheckAccount: false,
         checkAccount: async (address: string) => {
             return 0;
@@ -65,8 +88,8 @@ export const projectList: ProjectBaseInfo[] = [
         name: 'HANSUM',
         coin: 'HANSUM',
         label: ['ATOM', 'OSMO', 'JUNO'],
-        claimStatus: 'Upcoming',
-        claimStatusClass: 'bg-secondary',
+        claimStatus: 'Snapshot',
+        claimStatusClass: 'bg-warning',
         snapDate: '2022-03-01',
         airdropDate: '-',
         description: '',
@@ -109,8 +132,8 @@ export const projectList: ProjectBaseInfo[] = [
         name: 'EXSWAP',
         coin: 'EX',
         label: ['ATOM', 'OSMO'],
-        claimStatus: 'Twitter Notice',
-        claimStatusClass: 'bg-accent',
+        claimStatus: 'Snapshot',
+        claimStatusClass: 'bg-warning',
         snapDate: '2022-02-23',
         airdropDate: '-',
         description: '',

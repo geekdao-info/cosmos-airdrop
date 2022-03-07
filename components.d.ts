@@ -17,14 +17,15 @@ declare module 'vue' {
     APopconfirm: typeof import('ant-design-vue/es')['Popconfirm']
     ATooltip: typeof import('ant-design-vue/es')['Tooltip']
     ATypographyParagraph: typeof import('ant-design-vue/es')['TypographyParagraph']
-    ATypographyText: typeof import('ant-design-vue/es')['TypographyText']
     ATypographyTitle: typeof import('ant-design-vue/es')['TypographyTitle']
     CosmicHorizonInfo: typeof import('./src/components/projectInfo/CosmicHorizonInfo.vue')['default']
+    CronusInfo: typeof import('./src/components/projectInfo/CronusInfo.vue')['default']
     Demo: typeof import('./src/components/projectInfo/Demo.vue')['default']
     DesmosInfo: typeof import('./src/components/projectInfo/DesmosInfo.vue')['default']
     ExswapInfo: typeof import('./src/components/projectInfo/ExswapInfo.vue')['default']
     GravityInfo: typeof import('./src/components/projectInfo/GravityInfo.vue')['default']
     HansumInfo: typeof import('./src/components/projectInfo/HansumInfo.vue')['default']
+    HopeInfo: typeof import('./src/components/projectInfo/HopeInfo.vue')['default']
     Icon: typeof import('./src/components/Icon.vue')['default']
     LikeInfo: typeof import('./src/components/projectInfo/LikeInfo.vue')['default']
     ManageProfile: typeof import('./src/components/ManageProfile.vue')['default']
@@ -34,6 +35,7 @@ declare module 'vue' {
     ProjectFooter: typeof import('./src/components/ProjectFooter.vue')['default']
     PstakeInfo: typeof import('./src/components/projectInfo/PstakeInfo.vue')['default']
     RacoonInfo: typeof import('./src/components/projectInfo/RacoonInfo.vue')['default']
+    SenatusInfo: typeof import('./src/components/projectInfo/SenatusInfo.vue')['default']
   }
 }
 
