@@ -16,9 +16,32 @@ import cronusLogo from '../assets/logo/cronus-logo.jpeg';
 import craftLogo from '../assets/logo/craft-logo.jpeg';
 import fotLogo from '../assets/logo/fot-logo.jpeg';
 import diffusionLogo from '../assets/logo/diffusion-logo.jpeg';
+import coolCatLogo from '../assets/logo/coolCat-logo.jpeg';
 import cosmicHorizonLogo from '../assets/logo/cosmic-horizon-logo.png';
 
 export const projectList: ProjectBaseInfo[] = [
+    {
+        key: 'CoolCatChain',
+        icon: coolCatLogo,
+        name: 'CoolCatChain',
+        coin: 'CCAT',
+        label: ['ATOM', 'JUNO', 'OSMO', 'HUAHUA'],
+        claimStatus: 'Twitter Notice',
+        claimStatusClass: 'bg-accent',
+        snapDate: 'TBA',
+        airdropDate: 'TBA',
+        description: '',
+        detail: 'cool-cat-info',
+        twitter: 'https://twitter.com/CoolCatChain',
+        discord: 'https://discord.com/invite/mnyvNG9ejf',
+        airdropClaim: '',
+        officialWeb: 'https://linktr.ee/coolcatchain',
+        airdropLink: '',
+        isCheckAccount: false,
+        checkAccount: async (address: string) => {
+            return 0;
+        }
+    },
     {
         key: 'Cronus',
         icon: cronusLogo,
@@ -28,7 +51,7 @@ export const projectList: ProjectBaseInfo[] = [
         claimStatus: 'Upcoming',
         claimStatusClass: 'bg-secondary',
         snapDate: '2022/03/06-28',
-        airdropDate: '-',
+        airdropDate: 'TBA',
         description: '',
         detail: 'cronus-info',
         twitter: 'https://twitter.com/cronusfinance',
@@ -49,8 +72,8 @@ export const projectList: ProjectBaseInfo[] = [
         label: ['ATOM', 'JUNO'],
         claimStatus: 'Twitter Notice',
         claimStatusClass: 'bg-accent',
-        snapDate: '-',
-        airdropDate: '-',
+        snapDate: 'TBA',
+        airdropDate: 'TBA',
         description: '',
         detail: 'senatus-info',
         twitter: 'https://twitter.com/SenatusWorld',
@@ -71,8 +94,8 @@ export const projectList: ProjectBaseInfo[] = [
         label: ['CRAFT/OSMO', 'CRAFT/ATOM'],
         claimStatus: 'Twitter Notice',
         claimStatusClass: 'bg-accent',
-        snapDate: '-',
-        airdropDate: '-',
+        snapDate: 'TBA',
+        airdropDate: 'TBA',
         description: '',
         detail: 'craft-info',
         twitter: 'https://twitter.com/crafteconomy_',
@@ -93,8 +116,8 @@ export const projectList: ProjectBaseInfo[] = [
         label: ['UNI', 'OSMO', 'Evmos Community'],
         claimStatus: 'Twitter Notice',
         claimStatusClass: 'bg-accent',
-        snapDate: '-',
-        airdropDate: '-',
+        snapDate: 'TBA',
+        airdropDate: 'TBA',
         description: '',
         detail: 'diffusion-info',
         twitter: 'https://twitter.com/diffusion_fi',
@@ -138,7 +161,7 @@ export const projectList: ProjectBaseInfo[] = [
         claimStatus: 'Snapshot',
         claimStatusClass: 'bg-warning',
         snapDate: '2022-03-01',
-        airdropDate: '-',
+        airdropDate: 'TBA',
         description: '',
         detail: 'hansum-info',
         twitter: 'https://twitter.com/HANSUMtoken',
@@ -182,8 +205,8 @@ export const projectList: ProjectBaseInfo[] = [
         label: ['COSMOS'],
         claimStatus: 'Twitter Notice',
         claimStatusClass: 'bg-accent',
-        snapDate: '-',
-        airdropDate: '-',
+        snapDate: 'TBA',
+        airdropDate: 'TBA',
         description: '',
         detail: 'cosmic-horizon-info',
         twitter: 'https://twitter.com/CoHo_Cosmos',
@@ -205,7 +228,7 @@ export const projectList: ProjectBaseInfo[] = [
         claimStatus: 'Snapshot',
         claimStatusClass: 'bg-warning',
         snapDate: '2022-02-23',
-        airdropDate: '-',
+        airdropDate: 'TBA',
         description: '',
         detail: 'exswap-info',
         twitter: 'https://twitter.com/Exswapdotxyz',

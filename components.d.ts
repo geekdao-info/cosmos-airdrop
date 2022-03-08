@@ -18,6 +18,7 @@ declare module 'vue' {
     ATooltip: typeof import('ant-design-vue/es')['Tooltip']
     ATypographyParagraph: typeof import('ant-design-vue/es')['TypographyParagraph']
     ATypographyTitle: typeof import('ant-design-vue/es')['TypographyTitle']
+    CoolCatInfo: typeof import('./src/components/projectInfo/CoolCatInfo.vue')['default']
     CosmicHorizonInfo: typeof import('./src/components/projectInfo/CosmicHorizonInfo.vue')['default']
     CraftInfo: typeof import('./src/components/projectInfo/CraftInfo.vue')['default']
     CronusInfo: typeof import('./src/components/projectInfo/CronusInfo.vue')['default']

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <a-typography-title :level="3">Airdrop Allocation</a-typography-title>
+        <a-typography-title :level="3">Airdrop Detail</a-typography-title>
         <a-typography-paragraph></a-typography-paragraph>
         <a-typography-paragraph
             ><ul
