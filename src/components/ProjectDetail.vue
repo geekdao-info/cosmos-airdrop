@@ -86,9 +86,9 @@ defineExpose({
 <template>
     <a-drawer
         v-model:visible="visible"
-        width="50vw"
         title="Detail"
         placement="right"
+        :contentWrapperStyle="{ width: '80vw' }"
         :footer-style="{ textAlign: 'right' }"
         :closable="true"
         @after-visible-change="afterVisibleChange"
@@ -111,3 +111,4 @@ defineExpose({
         </div>
     </a-drawer>
 </template>
+<style></style>

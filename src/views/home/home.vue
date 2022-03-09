@@ -32,7 +32,7 @@ const openManageProfile = () => {
     <div>
         <div
             id="nav"
-            class="flex justify-end items-center border-base-200 bg-base-100 text-base-content sticky inset-x-0 top-0 z-50 w-full transition duration-200 ease-in-out border-b"
+            class="flex justify-end items-center py-2 border-base-200 bg-base-100 text-base-content sticky inset-x-0 top-0 z-50 w-full transition duration-200 ease-in-out border-b"
         >
             <div class="flex-0 ml-6">
                 <span class="text-primary font-bold text-xl lg:text-3xl"
@@ -45,7 +45,7 @@ const openManageProfile = () => {
 
             <div class="flex-1"> </div>
 
-            <div class="navbar max-w-none mr-2 lg:mr-5">
+            <div class="navbar max-w-none mr-2 hidden lg:mr-5 md:block">
                 <!-- <div class="mr-8" data-set-theme="dark"><icon icon-class="wb_sunny"></icon></div> -->
                 <a-dropdown :trigger="['click']">
                     <div
