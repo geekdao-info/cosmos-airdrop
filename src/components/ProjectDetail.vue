@@ -94,15 +94,19 @@ defineExpose({
         @after-visible-change="afterVisibleChange"
     >
         <template #footer class="text-center">
-            <button class="btn btn-primary btn-sm ml-2" @click="openTwitter">twitter</button>
-            <button class="btn btn-primary btn-sm ml-2" @click="openDiscord">discord</button>
-            <button class="btn btn-outline btn-primary btn-sm ml-2" @click="openAirdropClaimWeb"
+            <button class="btn btn-primary btn-sm ml-2 mb-2" @click="openTwitter">twitter</button>
+            <button class="btn btn-primary btn-sm ml-2 mb-2" @click="openDiscord">discord</button>
+            <button
+                class="btn btn-outline btn-primary btn-sm ml-2 mb-2"
+                @click="openAirdropClaimWeb"
                 >CLAIM</button
             >
-            <button class="btn btn-outline btn-primary btn-sm ml-2" @click="openAirdropDetailWeb"
+            <button
+                class="btn btn-outline btn-primary btn-sm ml-2 mb-2"
+                @click="openAirdropDetailWeb"
                 >AIRDROP DETAIL</button
             >
-            <button class="btn btn-outline btn-primary btn-sm ml-2" @click="openOfficialWeb"
+            <button class="btn btn-outline btn-primary btn-sm ml-2 mb-2" @click="openOfficialWeb"
                 >Official WEB</button
             >
         </template>
@@ -111,4 +115,9 @@ defineExpose({
         </div>
     </a-drawer>
 </template>
-<style></style>
+<style scoped>
+:deep(.ant-drawer .ant-drawer-content-wrapper) {
+    width: 500px !important;
+    color: #ffffff;
+}
+</style>
