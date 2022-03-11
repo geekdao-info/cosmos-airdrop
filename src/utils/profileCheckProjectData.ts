@@ -17,9 +17,101 @@ import craftLogo from '../assets/logo/craft-logo.jpeg';
 import fotLogo from '../assets/logo/fot-logo.jpeg';
 import diffusionLogo from '../assets/logo/diffusion-logo.jpeg';
 import coolCatLogo from '../assets/logo/coolCat-logo.jpeg';
+import cheqdLogo from '../assets/logo/cheqd-logo.jpeg';
+import owliesLogo from '../assets/logo/owlies-logo.jpeg';
+import coindexLogo from '../assets/logo/coindex-logo.jpeg';
+import crescentNetworkLogo from '../assets/logo/crescent-network-logo.jpeg';
 import cosmicHorizonLogo from '../assets/logo/cosmic-horizon-logo.png';
 
 export const projectList: ProjectBaseInfo[] = [
+    {
+        key: 'coindex',
+        icon: coindexLogo,
+        name: 'coindex',
+        coin: 'COIN',
+        label: ['JUNO'],
+        claimStatus: 'Twitter Notice',
+        claimStatusClass: 'bg-accent',
+        snapDate: 'Two Weeks before Apr. 5th ',
+        airdropDate: 'TBA',
+        description: '',
+        detail: 'coindex-info',
+        twitter: 'https://twitter.com/coindex9',
+        discord: 'https://discord.com/invite/2yCPbwQ6E5',
+        airdropClaim: 'https://www.coindex.money/',
+        officialWeb: 'https://www.coindex.money/',
+        airdropLink: 'https://www.coindex.money/',
+        isCheckAccount: false,
+        checkAccount: async (address: string) => {
+            return 0;
+        }
+    },
+    {
+        key: 'cheqd',
+        icon: cheqdLogo,
+        name: 'Cheqd',
+        coin: 'CHEQ',
+        label: ['ATOM', 'JUNO', 'OSMO'],
+        claimStatus: 'Snapshot',
+        claimStatusClass: 'bg-warning',
+        snapDate: '2022-03-10',
+        airdropDate: '2022-03-14',
+        description: '',
+        detail: 'cheqd-info',
+        twitter: 'https://twitter.com/cheqd_io',
+        discord: 'https://discord.com/invite/zjNCNZRZb6',
+        airdropClaim: 'https://rewards.cheqd.io/',
+        officialWeb: 'https://www.cheqd.io/',
+        airdropLink: '',
+        isCheckAccount: false,
+        checkAccount: async (address: string) => {
+            return 0;
+        }
+    },
+    {
+        key: 'CrescentHub',
+        icon: crescentNetworkLogo,
+        name: 'Crescent Network',
+        coin: 'CRE',
+        label: ['ATOM', 'Emeris', 'GravityDex'],
+        claimStatus: 'Snapshot',
+        claimStatusClass: 'bg-warning',
+        snapDate: '2022-01-01',
+        airdropDate: 'TBA',
+        description: '',
+        detail: 'crescent-network-info',
+        twitter: 'https://twitter.com/CrescentHub',
+        discord: '',
+        airdropClaim: 'https://airdrop.crescent.network/',
+        officialWeb: 'https://crescent.network/',
+        airdropLink: 'https://crescentnetwork.medium.com/crescent-token-distribution-926d90444a8b',
+        isCheckAccount: false,
+        checkAccount: async (address: string) => {
+            return 0;
+        }
+    },
+    {
+        key: 'owlies',
+        icon: owliesLogo,
+        name: 'Owlies',
+        coin: 'OWLIES',
+        label: ['ATOM', 'JUNO', 'OSMO', 'STAR'],
+        claimStatus: 'Twitter Notice',
+        claimStatusClass: 'bg-accent',
+        snapDate: 'TBA',
+        airdropDate: 'Q2 2022',
+        description: '',
+        detail: 'owlies-info',
+        twitter: 'https://twitter.com/OwliesNFT',
+        discord: 'https://discord.com/invite/wJQ8KBBxEZ',
+        airdropClaim: '',
+        officialWeb: 'https://linktr.ee/owlies',
+        airdropLink: '',
+        isCheckAccount: false,
+        checkAccount: async (address: string) => {
+            return 0;
+        }
+    },
     {
         key: 'CoolCatChain',
         icon: coolCatLogo,
