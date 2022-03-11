@@ -18,8 +18,11 @@ declare module 'vue' {
     ATooltip: typeof import('ant-design-vue/es')['Tooltip']
     ATypographyParagraph: typeof import('ant-design-vue/es')['TypographyParagraph']
     ATypographyTitle: typeof import('ant-design-vue/es')['TypographyTitle']
+    CardinalFinanceInfo: typeof import('./src/components/projectInfo/CardinalFinanceInfo.vue')['default']
+    CerberusInfo: typeof import('./src/components/projectInfo/CerberusInfo.vue')['default']
     CheqdInfo: typeof import('./src/components/projectInfo/CheqdInfo.vue')['default']
     CoindexInfo: typeof import('./src/components/projectInfo/CoindexInfo.vue')['default']
+    Contact: typeof import('./src/components/Contact.vue')['default']
     CoolCatInfo: typeof import('./src/components/projectInfo/CoolCatInfo.vue')['default']
     CosmicHorizonInfo: typeof import('./src/components/projectInfo/CosmicHorizonInfo.vue')['default']
     CraftInfo: typeof import('./src/components/projectInfo/CraftInfo.vue')['default']
@@ -36,7 +39,9 @@ declare module 'vue' {
     Icon: typeof import('./src/components/Icon.vue')['default']
     LikeInfo: typeof import('./src/components/projectInfo/LikeInfo.vue')['default']
     ManageProfile: typeof import('./src/components/ManageProfile.vue')['default']
+    MarbleInfo: typeof import('./src/components/projectInfo/MarbleInfo.vue')['default']
     NetaInfo: typeof import('./src/components/projectInfo/NetaInfo.vue')['default']
+    NomicInfo: typeof import('./src/components/projectInfo/NomicInfo.vue')['default']
     OwliesInfo: typeof import('./src/components/projectInfo/OwliesInfo.vue')['default']
     ProjectCard: typeof import('./src/components/ProjectCard.vue')['default']
     ProjectDetail: typeof import('./src/components/ProjectDetail.vue')['default']
@@ -44,6 +49,7 @@ declare module 'vue' {
     PstakeInfo: typeof import('./src/components/projectInfo/PstakeInfo.vue')['default']
     RacoonInfo: typeof import('./src/components/projectInfo/RacoonInfo.vue')['default']
     SenatusInfo: typeof import('./src/components/projectInfo/SenatusInfo.vue')['default']
+    ShadeProtocolInfo: typeof import('./src/components/projectInfo/ShadeProtocolInfo.vue')['default']
   }
 }
 

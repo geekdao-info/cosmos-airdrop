@@ -7,8 +7,10 @@ import { useProjectStore } from '@/store/project';
 import { useProfileStore } from '@/store/profile';
 import { InfoCircleFilled } from '@ant-design/icons-vue';
 import ManageProfile from '@/components/ManageProfile.vue';
+import Contact from '@/components/Contact.vue';
 
 components: {
+    Contact;
     ProjectCardVue;
     ProjectFooter;
     InfoCircleFilled;
@@ -43,42 +45,51 @@ const openManageProfile = () => {
                 <div class="ml-2 badge badge-primary badge-outline">Beta</div>
             </div>
 
-            <div class="flex-1"> </div>
+            <div class="flex-1"></div>
 
-            <div class="navbar max-w-none mr-2 hidden lg:mr-5 md:block">
+            <div class="flex items-center mr-2 lg:mr-5">
                 <!-- <div class="mr-8" data-set-theme="dark"><icon icon-class="wb_sunny"></icon></div> -->
-                <a-dropdown :trigger="['click']">
-                    <div
-                        class="btn btn-primary no-animation rounded-full btn-sm lg:btn-md"
-                        @click.prevent
-                        >{{ profileStore.currentProfileName || 'Manage' }} | Profile</div
-                    >
-                    <template #overlay>
-                        <a-menu>
-                            <a-menu-item
-                                style="text-align: center"
-                                v-for="item in profileStore.profiles"
-                                :key="item.key"
-                                @click="changeProfile(item.key, item.name)"
-                            >
-                                <span>{{ item.name }}</span>
-                            </a-menu-item>
+                <contact class="mr-2 lg:mr-5" />
+                <div class="hidden md:block">
+                    <a-dropdown :trigger="['click']">
+                        <div
+                            class="btn btn-primary no-animation rounded-full btn-sm lg:btn-md"
+                            @click.prevent
+                            >{{ profileStore.currentProfileName || 'Manage' }} | Profile</div
+                        >
+                        <template #overlay>
+                            <a-menu>
+                                <a-menu-item
+                                    style="text-align: center"
+                                    v-for="item in profileStore.profiles"
+                                    :key="item.key"
+                                    @click="changeProfile(item.key, item.name)"
+                                >
+                                    <span>{{ item.name }}</span>
+                                </a-menu-item>
 
-                            <a-menu-divider />
-                            <a-menu-item key="3" @click="openManageProfile"
-                                ><div class="text-center text-primary"
-                                    >Manage Profile</div
-                                ></a-menu-item
-                            >
-                        </a-menu>
-                    </template>
-                </a-dropdown>
+                                <a-menu-divider />
+                                <a-menu-item key="3" @click="openManageProfile"
+                                    ><div class="text-center text-primary"
+                                        >Manage Profile</div
+                                    ></a-menu-item
+                                >
+                            </a-menu>
+                        </template>
+                    </a-dropdown>
+                </div>
             </div>
         </div>
         <!-- Manage Your Profile to Check multi-account AirDrop Info -->
-        <div class="text-center">
-            <h1 class="pt-12 font-bold text-2xl">Profile Check Airdrop</h1>
-            <p>Manage your profile to Check multi-account Airdrop info</p>
+        <div class="pt-6 text-center">
+            <div class="stats shadow">
+                <div class="stat place-items-center">
+                    <div class="stat-value text-primary">{{ projectStore.projects.length }}</div>
+                    <div class="stat-title">Total Projects</div>
+                </div>
+            </div>
+            <h1 class="pt-6 font-bold text-2xl">Profile Check Airdrop</h1>
+            <p>Manage your profile to check multi-account airdrop info</p>
         </div>
 
         <div class="grid ustify-items-center lg:px-20">

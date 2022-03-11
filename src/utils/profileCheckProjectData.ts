@@ -20,10 +20,59 @@ import coolCatLogo from '../assets/logo/coolCat-logo.jpeg';
 import cheqdLogo from '../assets/logo/cheqd-logo.jpeg';
 import owliesLogo from '../assets/logo/owlies-logo.jpeg';
 import coindexLogo from '../assets/logo/coindex-logo.jpeg';
+import nomicLogo from '../assets/logo/nomic-logo.jpeg';
+import marbleLogo from '../assets/logo/marble-logo.jpeg';
+import cerberusLogo from '../assets/logo/cerberus-logo.png';
 import crescentNetworkLogo from '../assets/logo/crescent-network-logo.jpeg';
+import cardinalFinanceLogo from '../assets/logo/cardinal-finance-logo.jpeg';
+import shadeProtocolLogo from '../assets/logo/shade-protocol-logo.jpeg';
 import cosmicHorizonLogo from '../assets/logo/cosmic-horizon-logo.png';
 
 export const projectList: ProjectBaseInfo[] = [
+    {
+        key: 'cardinalFinance',
+        icon: cardinalFinanceLogo,
+        name: 'Cardinal Finance',
+        coin: 'PRIMO',
+        label: ['JUNO'],
+        claimStatus: 'Upcoming',
+        claimStatusClass: 'bg-secondary',
+        snapDate: 'March 15, 2022',
+        airdropDate: 'Q1 2022',
+        description: '',
+        detail: 'cardinal-finance-info',
+        twitter: 'https://twitter.com/CardinalDeFi',
+        discord: 'https://discord.gg/893sWRVQDg',
+        airdropClaim: '',
+        officialWeb: 'https://www.cardinalfinance.io/',
+        airdropLink: 'https://www.cardinalfinance.io/images/PRIMO-WP.pdf',
+        isCheckAccount: false,
+        checkAccount: async (address: string) => {
+            return 0;
+        }
+    },
+    {
+        key: 'Cerberus',
+        icon: cerberusLogo,
+        name: 'Cerberus',
+        coin: 'CRBRUS',
+        label: ['ATOM', 'OSMO', 'HUAHUA'],
+        claimStatus: 'Snapshot',
+        claimStatusClass: 'bg-warning',
+        snapDate: 'March 12, 2022',
+        airdropDate: 'TBA',
+        description: '',
+        detail: 'cerberus-info',
+        twitter: 'https://twitter.com/CerberusZone',
+        discord: 'https://discord.com/invite/u95WW9SKda',
+        airdropClaim: '',
+        officialWeb: 'https://cerberus.zone/',
+        airdropLink: 'https://cerberus.zone/faq.html',
+        isCheckAccount: false,
+        checkAccount: async (address: string) => {
+            return 0;
+        }
+    },
     {
         key: 'coindex',
         icon: coindexLogo,
@@ -329,6 +378,73 @@ export const projectList: ProjectBaseInfo[] = [
         officialWeb: 'https://www.exswap.xyz/',
         airdropLink:
             'https://medium.com/@1964681304joker/exswap-%E5%8D%B3%E5%B0%86%E5%88%B0%E6%9D%A5%E7%9A%84%E7%A9%BA%E6%8A%95-ef3a912b2e04',
+        isCheckAccount: false,
+        checkAccount: async (address: string) => {
+            return 0;
+        }
+    },
+    {
+        key: 'nomic',
+        icon: nomicLogo,
+        name: 'Nomic',
+        coin: 'NOM',
+        label: ['ATOM'],
+        claimStatus: 'Claimable',
+        claimStatusClass: 'bg-primary',
+        snapDate: '2022-01-21',
+        airdropDate: '2022-02-01',
+        description: '',
+        detail: 'nomic-info',
+        twitter: 'https://twitter.com/nomicbtc',
+        discord: 'https://discord.com/invite/tN9rJvdwGh',
+        airdropClaim: 'https://app.nomic.io/',
+        officialWeb: 'https://app.nomic.io/',
+        airdropLink: 'https://blog.nomic.io/nomic-stakenet-launch',
+        isCheckAccount: false,
+        checkAccount: async (address: string) => {
+            return 0;
+        }
+    },
+    {
+        key: 'shade',
+        icon: shadeProtocolLogo,
+        name: 'Shade Protocol',
+        coin: 'SHD',
+        label: ['ATOM', 'LUNA', 'SCRT'],
+        claimStatus: 'Claimable',
+        claimStatusClass: 'bg-primary',
+        snapDate: '2021 Nov 7th-Dec 13th',
+        airdropDate: '2022-02-21',
+        description: '',
+        detail: 'shade-protocol-info',
+        twitter: 'https://twitter.com/Shade_Protocol',
+        discord: 'https://discord.com/invite/58YQfsbwtt',
+        airdropClaim: 'https://airdrop.shadeprotocol.io/',
+        officialWeb: 'https://shadeprotocol.io/',
+        airdropLink:
+            'https://medium.com/@shadeprotocoldevs/shade-protocol-claim-tutorial-41aa959afbf0',
+        isCheckAccount: false,
+        checkAccount: async (address: string) => {
+            return 0;
+        }
+    },
+    {
+        key: 'marble',
+        icon: marbleLogo,
+        name: 'Marble DAO',
+        coin: 'MARBLE',
+        label: ['JUNO'],
+        claimStatus: 'Claimable',
+        claimStatusClass: 'bg-primary',
+        snapDate: '2022-02-18',
+        airdropDate: '2022-03-01',
+        description: '',
+        detail: 'marble-info',
+        twitter: 'https://app.marbledao.finance/',
+        discord: 'https://discord.com/invite/fs67WDr6NA',
+        airdropClaim: 'https://app.marbledao.finance/airdrop',
+        officialWeb: 'https://app.marbledao.finance/',
+        airdropLink: 'https://app.marbledao.finance/The%20Marblepaper.pdf',
         isCheckAccount: false,
         checkAccount: async (address: string) => {
             return 0;
