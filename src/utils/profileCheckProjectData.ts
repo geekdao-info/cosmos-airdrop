@@ -166,10 +166,10 @@ export const projectList: ProjectBaseInfo[] = [
         icon: coolCatLogo,
         name: 'CoolCatChain',
         coin: 'CCAT',
-        label: ['ATOM', 'JUNO', 'OSMO', 'HUAHUA'],
+        label: ['ATOM', 'JUNO', 'HUAHUA'],
         claimStatus: 'Twitter Notice',
         claimStatusClass: 'bg-accent',
-        snapDate: 'TBA',
+        snapDate: 'Btwn Mar. 13th & Apr. 1st',
         airdropDate: 'TBA',
         description: '',
         detail: 'cool-cat-info',
@@ -177,7 +177,8 @@ export const projectList: ProjectBaseInfo[] = [
         discord: 'https://discord.com/invite/mnyvNG9ejf',
         airdropClaim: '',
         officialWeb: 'https://linktr.ee/coolcatchain',
-        airdropLink: '',
+        airdropLink:
+            'https://coolcatchain.medium.com/announcing-coolcat-a-cosmic-journey-8f8487615515',
         isCheckAccount: false,
         checkAccount: async (address: string) => {
             return 0;

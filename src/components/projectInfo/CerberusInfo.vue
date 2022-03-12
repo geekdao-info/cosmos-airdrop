@@ -1,5 +1,14 @@
 <template>
     <div>
+        <a-typography-title :level="3">Airdrop Distribution ratios:</a-typography-title>
+        <a-typography-paragraph
+            ><ul>
+                <li>1 $ATOM = 104 $CRBRUS</li>
+                <li>1 $OSMO = 189 $CRBRUS</li>
+                <li>1 $HUAHUA = 0.97 $CRBRUS</li>
+            </ul></a-typography-paragraph
+        >
+        <a-typography-title :level="3">Details</a-typography-title>
         <section
             ><div
                 ><div class="fc as gv gw gx gy"></div
