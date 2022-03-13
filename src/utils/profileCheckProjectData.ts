@@ -25,10 +25,34 @@ import marbleLogo from '../assets/logo/marble-logo.jpeg';
 import cerberusLogo from '../assets/logo/cerberus-logo.png';
 import crescentNetworkLogo from '../assets/logo/crescent-network-logo.jpeg';
 import cardinalFinanceLogo from '../assets/logo/cardinal-finance-logo.jpeg';
+import elementsOfCosmosLogo from '../assets/logo/elements-of-cosmos-logo.jpeg';
 import shadeProtocolLogo from '../assets/logo/shade-protocol-logo.jpeg';
 import cosmicHorizonLogo from '../assets/logo/cosmic-horizon-logo.png';
 
 export const projectList: ProjectBaseInfo[] = [
+    {
+        key: 'elementsOfCosmos',
+        icon: elementsOfCosmosLogo,
+        name: 'Elements Of Cosmos',
+        coin: 'EOC',
+        label: ['OSMO', 'ATOM', 'LUNA'],
+        claimStatus: 'Twitter Notice',
+        claimStatusClass: 'bg-accent',
+        snapDate: 'TBA',
+        airdropDate: 'TBA',
+        description: '',
+        detail: 'elements-of-cosmos-info',
+        twitter: 'https://twitter.com/cosmoselements',
+        discord: 'https://discord.com/invite/TD4npCwEQm',
+        airdropClaim: '',
+        officialWeb: 'https://elementsofcosmos.io/',
+        airdropLink:
+            'https://elementsofcosmos.io/wp-content/uploads/2022/03/EOC_LIGHTPAPER_FINAL.pdf',
+        isCheckAccount: false,
+        checkAccount: async (address: string) => {
+            return 0;
+        }
+    },
     {
         key: 'cardinalFinance',
         icon: cardinalFinanceLogo,

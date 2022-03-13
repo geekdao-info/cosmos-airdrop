@@ -31,6 +31,7 @@ declare module 'vue' {
     Demo: typeof import('./src/components/projectInfo/Demo.vue')['default']
     DesmosInfo: typeof import('./src/components/projectInfo/DesmosInfo.vue')['default']
     DiffusionInfo: typeof import('./src/components/projectInfo/DiffusionInfo.vue')['default']
+    ElementsOfCosmosInfo: typeof import('./src/components/projectInfo/ElementsOfCosmosInfo.vue')['default']
     ExswapInfo: typeof import('./src/components/projectInfo/ExswapInfo.vue')['default']
     FortisInfo: typeof import('./src/components/projectInfo/FortisInfo.vue')['default']
     GravityInfo: typeof import('./src/components/projectInfo/GravityInfo.vue')['default']
